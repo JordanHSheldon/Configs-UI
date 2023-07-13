@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import csgoDataService from './csgoDataService'
 
-const id = JSON.parse(localStorage.getItem("id"));
+const id = 0;
 
 const initialState = {
   csgodata: [],
