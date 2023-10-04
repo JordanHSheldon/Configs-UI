@@ -17,14 +17,14 @@ export const getSettingsData = createAsyncThunk(
       //const token = thunkAPI.getState().auth.user.token
       return await settingsDataService.getSettingsData(id)
     } catch (error) {
-      const message =
+      const settingsMessage =
         (error.response &&
           error.response.data &&
           error.response.data.message
         ) ||
         error.message ||
         error.toString()
-      return thunkAPI.rejectWithValue(message)
+      return thunkAPI.rejectWithValue(settingsMessage)
     }
   }
 )

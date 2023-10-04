@@ -1,22 +1,22 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import csgoDataService from './csgoDataService'
+import userService from './userService'
 
 const id = 0;
 
 const initialState = {
-  csgodata: [],
+  userdata: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: '',
 }
 
-export const getCsgoData = createAsyncThunk(
-  'csgodata/get',
+export const getUserData = createAsyncThunk(
+  'userdata/get',
   async (thunkAPI) => {
     try {
       //const token = thunkAPI.getState().auth.user.token
-      return await csgoDataService.getCsgoData(id)
+      return await userService.getCsgoData(id)
     } catch (error) {
       const message =
         (error.response &&
@@ -30,23 +30,23 @@ export const getCsgoData = createAsyncThunk(
   }
 )
 
-export const csgoDataSlice = createSlice({
-  name: 'csgodata',
+export const userSlice = createSlice({
+  name: 'userdata',
   initialState,
   reducers: {
     reset: (state) => initialState,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getCsgoData.pending, (state) => {
+      .addCase(getUserData.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(getCsgoData.fulfilled, (state, action) => {
+      .addCase(getUserData.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
         state.csgodata = action.payload
       })
-      .addCase(getCsgoData.rejected, (state, action) => {
+      .addCase(getUserData.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.csgodata = action.payload
@@ -54,5 +54,5 @@ export const csgoDataSlice = createSlice({
   },
 })
 
-export const { reset } = csgoDataSlice.actions
-export default csgoDataSlice.reducer
+export const { reset } = userSlice.actions
+export default userSlice.reducer

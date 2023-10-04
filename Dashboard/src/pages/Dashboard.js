@@ -1,41 +1,37 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "../Components/Spinner";
 import { getCsgoData, reset } from "../features/csgoDataSlice";
-// import { getSettingsData, settingsreset } from "../features/settingsDataSlice";
+import { getSettingsData } from "../features/settingsDataSlice";
 //import EditIcon from '@mui/icons-material/Edit';
 
 function Dashboard() {
-  
   const {csgodata, isLoading, isError, message } = useSelector(
     (state) => state.csgodata
   );
 
-  // const {settingsdata, isSettingsLoading, isSettingsError, settingsMessage } = useSelector(
-  //   (state) => state.settingsdata
-  // );
+  const {settingsdata, isSettingsLoading, isSettingsError, settingsMessage } = useSelector(
+    (state) => state.settingsdata
+  );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
+    if (isError) { console.log(message);}
     dispatch(getCsgoData(3));
-    // dispatch(getSettingsData(3));
+    dispatch(getSettingsData(3));
 
     return () => {
       dispatch(reset())
-      // dispatch(settingsreset())
     };
-  }, [navigate,isError,message,dispatch]);
+  }, [navigate, isSettingsError, settingsMessage, isError, message, dispatch]);
 
-  if (isLoading) {
+  if (isLoading || isSettingsLoading) {
     return <Spinner />;
   }
-  // copy register page for items.
+  
   return (
     <>
       <section className="content">
@@ -86,7 +82,7 @@ function Dashboard() {
       </section>
       <section className="heading">
         <p>Settings:</p>
-        {/* {settingsdata ? (
+        {settingsdata ? (
           <div className="stats">
             <p>Player stats for:</p>
             <table>
@@ -111,7 +107,7 @@ function Dashboard() {
                 </tr>
                 <tr>
                 <th>Headshot:</th>
-                  <td>{settingsdata.settingsResponse.ResolutionType}%</td>
+                  <td>{settingsdata.ResolutionType}%</td>
                 </tr>
                 <tr>
                 <th>Accuracy</th>
@@ -122,14 +118,13 @@ function Dashboard() {
                   <td>{settingsdata.settingsResponse}</td>
                 </tr>
                 <tr>
-                
                 </tr>
             </tbody>
         </table>
           </div>
         ) : (
           <h3>No results found</h3>
-        )} */}
+        )}
       </section>
       <section className="heading">
         <p>guns</p>
