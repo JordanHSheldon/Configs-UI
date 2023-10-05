@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import userService from './userService'
 
-const id = 0;
-
 const initialState = {
   userdata: [],
   isError: false,
@@ -11,12 +9,32 @@ const initialState = {
   message: '',
 }
 
-export const getUserData = createAsyncThunk(
+export const login = createAsyncThunk(
   'userdata/get',
   async (thunkAPI) => {
     try {
       //const token = thunkAPI.getState().auth.user.token
-      return await userService.getCsgoData(id)
+      return await userService.login(initialState.userdata)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
+export const register = createAsyncThunk(
+  'userdata/save',
+  async ({ fname, lname, username, email, password, cpassword },thunkAPI) => {
+    let newUser = new Object({fname,lname, username, email, password});
+    try {
+      //const token = thunkAPI.getState().auth.user.token
+      return await userService.register(newUser)
     } catch (error) {
       const message =
         (error.response &&
@@ -38,18 +56,31 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getUserData.pending, (state) => {
+      .addCase(login.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(getUserData.fulfilled, (state, action) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.csgodata = action.payload
+        state.userdata = action.payload
       })
-      .addCase(getUserData.rejected, (state, action) => {
+      .addCase(login.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
-        state.csgodata = action.payload
+        state.userdata = action.payload
+      })
+      .addCase(register.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.userdata = action.payload
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.userdata = action.payload
       })
   },
 })

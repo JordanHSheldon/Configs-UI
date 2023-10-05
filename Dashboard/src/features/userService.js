@@ -1,29 +1,43 @@
 import axios from 'axios'
 
-const getUserById = "https://localhost:32786/api/User/GetUserById"
+const loginurl = "http://localhost:3003/login"
+const registerurl = "http://localhost:3003/signup"
 
-// Get user csgodata
-const getUserData = async (id) => {
+const headers = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods':'POST, OPTIONS'
+}
+
+// login the user.
+const login = async (req) => {
   try{
-  let request = { 
-    id: id
-  }
-  const response = await axios.post(getUserById, request,
-    {
-      auth:{ 
-      username: 'jordan',
-      password: 'password'
-    }})
+    console.log(req)
+    const response = await axios.post(loginurl, req)
     console.log(response.data)
-  return response.data
-  }catch(err)
-  {
+    return response.data
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+// register the user    
+const register = async (req) => {
+  try{
+    console.log(req)
+    const response = await axios.post(registerurl, req)
+    console.log(response.data)
+    return response.data
+  }
+  catch(err){
     console.log(err.message)
   }
 }
 
 const userService = {
-  getUserData
+  login,
+  register
 }
 
 export default userService;
