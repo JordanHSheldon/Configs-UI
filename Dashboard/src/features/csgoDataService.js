@@ -8,8 +8,8 @@ const getCsgoData = async (id) => {
   let request = { 
     id: id
   }
-  const response = await axios.post(getSettingsById, request)
-  return response.data
+  const response = await axios.post(getSettingsById, request);
+  return response.data;
 }
 
 const csgoDataService = {

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "../Components/Spinner";
-import { getCsgoData, /*reset*/ } from "../features/csgoDataSlice";
+import { getCsgoData } from "../features/csgoDataSlice";
 
 function Dashboard() {
 

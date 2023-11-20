@@ -59,7 +59,7 @@ function SignupPage() {
                 </div>
                 <button type="submit" className="btn btn-primary w-100">Sign Up</button>
               </form>
-              <p>Already have an account?<a href='signup'>Sign in</a></p>
+              <p>Already have an account?<a href='/Login'>Sign in</a></p>
             </div>
           </div>
         </div>
