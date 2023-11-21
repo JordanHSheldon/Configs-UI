@@ -2,7 +2,9 @@ import React from 'react'
 
 const index = () => {
   return (
-    <div>index</div>
+    <div>
+      <p>Developed by @jordanhsheldon on github</p>
+    </div>
   )
 }
 

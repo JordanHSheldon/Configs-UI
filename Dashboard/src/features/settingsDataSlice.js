@@ -44,7 +44,6 @@ export const settingsDataSlice = createSlice({
         state.isSettingsLoading = false
         state.isSettingsSuccess = true
         state.settingsdata = action.payload
-        console.log(state.data)
       })
       .addCase(getSettingsData.rejected, (state, action) => {
         state.isSettingsLoading = false

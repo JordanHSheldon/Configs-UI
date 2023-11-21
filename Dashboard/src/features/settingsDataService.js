@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const getSettingsById = "https://localhost:7191/api/Data/GetDataById"
+const getSettingsById = "https://localhost:44345/api/Data/GetDataById"
 
 // Get user csgodata
 const getSettingsData = async (id) => {

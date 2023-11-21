@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import csgoDataService from './csgoDataService'
 
-const id = 0;
-
 const initialState = {
   csgodata: [],
   isError: false,
@@ -16,7 +14,7 @@ export const getCsgoData = createAsyncThunk(
   async (thunkAPI) => {
     try {
       //const token = thunkAPI.getState().auth.user.token
-      return await csgoDataService.getCsgoData(id)
+      return await csgoDataService.getCsgoData("")
     } catch (error) {
       const message =
         (error.response &&
@@ -45,7 +43,6 @@ export const csgoDataSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.csgodata = action.payload
-        console.log(state.data)
       })
       .addCase(getCsgoData.rejected, (state, action) => {
         state.isLoading = false
