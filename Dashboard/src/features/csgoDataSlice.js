@@ -11,10 +11,10 @@ const initialState = {
 
 export const getCsgoData = createAsyncThunk(
   'csgodata/get',
-  async (thunkAPI) => {
+  async (x) => {
     try {
       //const token = thunkAPI.getState().auth.user.token
-      return await csgoDataService.getCsgoData("")
+      return await csgoDataService.getCsgoData(x)
     } catch (error) {
       const message =
         (error.response &&
@@ -23,7 +23,7 @@ export const getCsgoData = createAsyncThunk(
         ) ||
         error.message ||
         error.toString()
-      return thunkAPI.rejectWithValue(message)
+      return x.rejectWithValue(message)
     }
   }
 )
