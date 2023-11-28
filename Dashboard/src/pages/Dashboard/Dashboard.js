@@ -4,6 +4,7 @@ import Spinner from "../../Components/Spinner";
 import { getCsgoData } from "../../features/csgoDataSlice";
 import {useParams} from "react-router-dom";
 import "./dashboard.css";
+
 function Dashboard() {
   const {csgodata, isLoading, isError, message } = useSelector(
     (state) => state.csgodata
