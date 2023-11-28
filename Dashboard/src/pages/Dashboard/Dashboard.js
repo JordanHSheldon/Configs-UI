@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "../../Components/Spinner";
 import { getCsgoData } from "../../features/csgoDataSlice";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./dashboard.css";
 
 function Dashboard() {
@@ -17,7 +17,7 @@ function Dashboard() {
     if (csgodata !== true && !isLoading && !isError) {
       dispatch(getCsgoData(taco));
     }
-  }, []);
+  });
 
   if (isLoading) {
     return <Spinner />;
