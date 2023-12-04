@@ -21,18 +21,21 @@ function LoginPage() {
     if (isLoading) {
       <Spinner />;
     }
-  },[userdata]);
+
+    if (isError) {
+      console.log(message);
+    }
+  });
 
 
-  const handleLogin = (e) => {
+  const handleLogin = async(e) => {
     e.preventDefault();
-    console.log(dispatch(login({ 
+    dispatch(login({ 
       Username: username,
       Password: password
-    })).PromiseResult);
+    }));
+    console.log(userdata);
   };
-
- 
 
   return (
     <div className="container">

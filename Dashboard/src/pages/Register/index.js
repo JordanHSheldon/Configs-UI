@@ -1,16 +1,43 @@
-// SignupPage.js
-
 import React, { useState } from 'react';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { register }  from '../../features/userSlice';
+import Spinner from "../../Components/Spinner";
+import { redirect } from "react-router-dom";
 
 function SignupPage() {
+  const {userdata, isLoading, isError, message } = useSelector(
+    (state) => state.userdata
+  );
+  
+  let dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignup = (e) => {
+  useEffect(() => {
+    if(userdata){
+      redirect('/');
+    }
+    
+    if (isLoading) {
+      <Spinner />;
+    }
+
+    if (isError) {
+      console.log(message);
+    }
+  });
+
+
+  const handleSignup = async(e) => {
     e.preventDefault();
-    // Perform signup logic here with fullName, email, and password
-    console.log(`Signing up with name: ${username}, email: ${email}, password: ${password}`);
+    dispatch(register({ 
+      Username: username,
+      Password: password,
+      email: email
+    }));
+    console.log(userdata);
   };
 
   return (

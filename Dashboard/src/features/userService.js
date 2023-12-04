@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const LoginUrl = "https://localhost:44345/api/User/Login";
-const RegisterUrl = "https://localhost:44345/api/Data/GetDataById";
+const RegisterUrl = "https://localhost:44345/api/User/Register";
 
 // Login user
 const Login = async (loginRequest) => {
