@@ -9,10 +9,11 @@ const initialState = {
   userMessage: '',
 }
 
-export const Login = createAsyncThunk(
-  'user/login',
+export const login = createAsyncThunk(
+  'login',
   async (x) => {
     try {
+      console.log(x)
       //const token = thunkAPI.getState().auth.user.token
       return await userService.Login(x)
     } catch (error) {
@@ -28,8 +29,8 @@ export const Login = createAsyncThunk(
   }
 )
 
-export const Register = createAsyncThunk(
-  'user/register',
+export const register = createAsyncThunk(
+  'register',
   async (x) => {
     try {
       //const token = thunkAPI.getState().auth.user.token
@@ -55,28 +56,28 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(Login.pending, (state) => {
+      .addCase(login.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(Login.fulfilled, (state, action) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.isSettingsLoading = false
         state.isSettingsSuccess = true
         state.userdata = action.payload
       })
-      .addCase(Login.rejected, (state, action) => {
+      .addCase(login.rejected, (state, action) => {
         state.isSettingsLoading = false
         state.isSettingsError = true
         state.userdata = action.payload
       })
-      .addCase(Register.pending, (state) => {
+      .addCase(register.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(Register.fulfilled, (state, action) => {
+      .addCase(register.fulfilled, (state, action) => {
         state.isSettingsLoading = false
         state.isSettingsSuccess = true
         state.userdata = action.payload
       })
-      .addCase(Register.rejected, (state, action) => {
+      .addCase(register.rejected, (state, action) => {
         state.isSettingsLoading = false
         state.isSettingsError = true
         state.userdata = action.payload

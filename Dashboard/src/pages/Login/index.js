@@ -1,14 +1,38 @@
 import React, { useState } from 'react';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { login }  from '../../features/userSlice';
+import Spinner from "../../Components/Spinner";
+import { redirect } from "react-router-dom";
 
 function LoginPage() {
+  const {userdata, isLoading, isError, message } = useSelector(
+    (state) => state.userdata
+  );
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(userdata){
+      redirect('/');
+    }
+  
+    if (isLoading) {
+      <Spinner />;
+    }
+  },[userdata]);
+
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Perform login logic here with username and password
-    console.log(`Logging in with username: ${username} and password: ${password}`);
+    console.log(dispatch(login({ 
+      Username: username,
+      Password: password
+    })).PromiseResult);
   };
+
+ 
 
   return (
     <div className="container">
