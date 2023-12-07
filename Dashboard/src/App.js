@@ -7,15 +7,16 @@ import Bot from "./pages/Bot";
 import About from "./pages/About";
 import Footer from "./Components/Footer";
 import Home from "./pages/Home";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer,toast } from "react-toastify";
 
 function App() {
   return (
     <>
-    <ToastContainer />
       <Navbar />
       <Router>
         <div className="container">
+          
+        <ToastContainer position={toast.POSITION.TOP_CENTER} autoClose={4000}/>
           <Routes>
             <Route path="/" element={<Home />} /> 
             <Route path="/:taco" element={<Dashboard />} />

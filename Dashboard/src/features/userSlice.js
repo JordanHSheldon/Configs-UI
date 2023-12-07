@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import userService from './userService.js'
 
+
 const initialState = {
   userdata: [],
   isSettingsError: false,
@@ -13,8 +14,6 @@ export const login = createAsyncThunk(
   'login',
   async (x) => {
     try {
-      console.log(x)
-      //const token = thunkAPI.getState().auth.user.token
       return await userService.Login(x)
     } catch (error) {
       const userMessage =
@@ -62,7 +61,9 @@ export const userSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isSettingsLoading = false
         state.isSettingsSuccess = true
+        console.log(state.userdata)
         state.userdata = action.payload
+        console.log(state.userdata)
       })
       .addCase(login.rejected, (state, action) => {
         state.isSettingsLoading = false

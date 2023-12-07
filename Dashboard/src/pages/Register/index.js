@@ -37,7 +37,6 @@ function SignupPage() {
       Password: password,
       email: email
     }));
-    console.log(userdata);
   };
 
   return (

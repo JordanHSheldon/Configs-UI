@@ -3,19 +3,27 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login }  from '../../features/userSlice';
 import Spinner from "../../Components/Spinner";
-import { redirect } from "react-router-dom";
+import { Navigate,redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function LoginPage() {
   const {userdata, isLoading, isError, message } = useSelector(
     (state) => state.userdata
   );
+  console.log(userdata.token);
+  const notify = (msg) =>{
+    toast(msg);
+  }
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(userdata){
-      redirect('/');
+    if(userdata!== undefined & userdata?.token!==undefined){
+      console.log('redirecting');
+      notify("success!");
+      <Navigate to="/" />
     }
   
     if (isLoading) {
@@ -23,7 +31,7 @@ function LoginPage() {
     }
 
     if (isError) {
-      console.log(message);
+      notify(message);
     }
   });
 
@@ -34,7 +42,10 @@ function LoginPage() {
       Username: username,
       Password: password
     }));
-    console.log(userdata);
+    console.log(userdata)
+    if(userdata){
+      redirect('/');
+    }
   };
 
   return (

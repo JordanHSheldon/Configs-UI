@@ -9,7 +9,7 @@ function Dashboard() {
   const {csgodata, isLoading, isError, message } = useSelector(
     (state) => state.csgodata
   );
-
+  
   const {taco} = useParams();
   const dispatch = useDispatch();
 
