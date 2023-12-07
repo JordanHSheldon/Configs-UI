@@ -15,8 +15,7 @@ function App() {
       <Navbar />
       <Router>
         <div className="container">
-          
-        <ToastContainer position={toast.POSITION.TOP_CENTER} autoClose={4000}/>
+          <ToastContainer position={toast.POSITION.TOP_CENTER} autoClose={4000}/>
           <Routes>
             <Route path="/" element={<Home />} /> 
             <Route path="/:taco" element={<Dashboard />} />

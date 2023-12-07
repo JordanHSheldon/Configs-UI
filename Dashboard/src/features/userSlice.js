@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import userService from './userService.js'
 
-
 const initialState = {
   userdata: [],
   isSettingsError: false,

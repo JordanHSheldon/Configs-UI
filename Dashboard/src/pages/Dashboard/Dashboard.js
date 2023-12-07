@@ -9,7 +9,7 @@ function Dashboard() {
   const {csgodata, isLoading, isError, message } = useSelector(
     (state) => state.csgodata
   );
-  
+
   const {taco} = useParams();
   const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ function Dashboard() {
     if (csgodata !== true && !isLoading && !isError) {
       dispatch(getCsgoData(taco));
     }
-  });
+  },[]);
 
   if (isLoading) {
     return <Spinner />;

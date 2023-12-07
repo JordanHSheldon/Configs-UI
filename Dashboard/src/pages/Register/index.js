@@ -3,21 +3,28 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { register }  from '../../features/userSlice';
 import Spinner from "../../Components/Spinner";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
+import { toast } from "react-toastify";
 
 function SignupPage() {
-  const {userdata, isLoading, isError, message } = useSelector(
+  const {isLoading, isError, message } = useSelector(
     (state) => state.userdata
   );
-  
-  let dispatch = useDispatch();
+  const cookies = new Cookies();
+  const notify = (msg) =>{
+    toast(msg);
+  }
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    if(userdata){
-      redirect('/');
+    if(cookies.get("user")){
+      notify("You are registered!");
+      Navigate("/");
     }
     
     if (isLoading) {
