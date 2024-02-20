@@ -24,7 +24,6 @@ function LoginPage() {
 
   useEffect(() => {
     if(cookies.get("user")){
-      notify("You are logged in!");
       Navigate("/");
     }
   
@@ -37,13 +36,17 @@ function LoginPage() {
     }
   });
 
-
   const handleLogin = async(e) => {
     e.preventDefault();
-    dispatch(login({ 
-      Username: username,
-      Password: password
-    }));
+    try {
+      await dispatch(login({ 
+        Username: username,
+        Password: password
+      }));
+      toast.success('Login successful!');
+    } catch (error) {
+      toast.error('Login failed. Please try again.');
+    }
   };
 
   return (

@@ -7,7 +7,7 @@ import Bot from "./pages/Bot";
 import About from "./pages/About";
 import Footer from "./Components/Footer";
 import Home from "./pages/Home";
-import { ToastContainer,toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -15,7 +15,18 @@ function App() {
       <Navbar />
       <Router>
         <div className="container">
-          <ToastContainer position={toast.POSITION.TOP_CENTER} autoClose={4000}/>
+          <ToastContainer className="toast-position"
+            position="top-center"
+            autoClose={10000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
           <Routes>
             <Route path="/" element={<Home />} /> 
             <Route path="/:taco" element={<Dashboard />} />

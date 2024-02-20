@@ -11,10 +11,8 @@ function SignupPage() {
   const {isLoading, isError, message } = useSelector(
     (state) => state.userdata
   );
+
   const cookies = new Cookies();
-  const notify = (msg) =>{
-    toast(msg);
-  }
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -23,7 +21,6 @@ function SignupPage() {
 
   useEffect(() => {
     if(cookies.get("user")){
-      notify("You are registered!");
       Navigate("/");
     }
     
@@ -33,17 +30,22 @@ function SignupPage() {
 
     if (isError) {
       console.log(message);
+      toast(message);
     }
   });
 
-
   const handleSignup = async(e) => {
     e.preventDefault();
-    dispatch(register({ 
+    try {
+      await dispatch(register({ 
       Username: username,
       Password: password,
       email: email
     }));
+    toast.success('Registration successful!');
+  } catch (error) {
+    toast.error('Registration failed. Please try again.');
+  }
   };
 
   return (
@@ -92,7 +94,7 @@ function SignupPage() {
                 </div>
                 <button type="submit" className="btn btn-primary w-100">Sign Up</button>
               </form>
-              <p>Already have an account?<a href='/Login'>Sign in</a></p>
+              <p><a href='/Login'>Already have an account?</a></p>
             </div>
           </div>
         </div>
