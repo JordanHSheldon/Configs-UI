@@ -17,7 +17,7 @@ function Dashboard() {
     if (csgodata !== true && !isLoading && !isError) {
       dispatch(getCsgoData(taco));
     }
-  },[]);
+  });
 
   if (isLoading) {
     return <Spinner />;

@@ -29,7 +29,7 @@ function App() {
           />
           <Routes>
             <Route path="/" element={<Home />} /> 
-            <Route path="/:taco" element={<Dashboard />} />
+            <Route path="/profile/:taco" element={<Dashboard />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/About" element={<Bot />} />

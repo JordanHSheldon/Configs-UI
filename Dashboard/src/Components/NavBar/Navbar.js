@@ -1,10 +1,8 @@
 import React from 'react';
 import './navbarstyles.css'; // Import the CSS file
-import Cookies from "universal-cookie";
 
 class Navbar extends React.Component {
   render() {
-    const cookies = new Cookies();
     return (
       <nav className="navbar">
         <div className="container">
