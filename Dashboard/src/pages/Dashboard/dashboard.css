@@ -28,7 +28,7 @@ body {
 }
 
 .profile-button:active {
-    background: blue;
+    background: #682773;
     box-shadow: none
 }
 
@@ -40,14 +40,6 @@ body {
 .labels {
     font-size: 11px;
 }
-
-/* input[type="text"],
-input[type="password"],
-input[type="number"],
-.input{
-    border: none;
-    outline: none;
-} */
 
 .add-experience:hover {
     background: #BA68C8;

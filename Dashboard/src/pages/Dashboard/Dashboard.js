@@ -6,25 +6,23 @@ import { useParams } from "react-router-dom";
 import "./dashboard.css";
 
 function Dashboard() {
-  const {csgodata, isLoading, isError, message } = useSelector(
+  const { csgodata, isLoading, isError, message } = useSelector(
     (state) => state.csgodata
   );
 
-  const {taco} = useParams();
+  const {user} = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (csgodata !== true && !isLoading && !isError) {
-      dispatch(getCsgoData(taco));
-    }
-  });
-
+    dispatch(getCsgoData(user));
+  },[dispatch,user]);
+  
   if (isLoading) {
     return <Spinner />;
   }
 
   if (isError) {
-    return <h3>Error: {message}</h3>;
+    console.log(message);
   }
 
   if (!csgodata) {
@@ -42,10 +40,12 @@ function Dashboard() {
               <div className="col-md-3 border-right">
                   <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" width="150px" alt="profile" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"></img><span className="font-weight-bold">FirstName{" "+ csgodata.username +" "}LastName</span></div>
               </div>
-              <div className="col-md-5 border-right">
-              
-              </div>
-              <div className="col-md-4">
+              <div className="col-md-5 border-right" style={{"padding-top":"5em"}}>
+                <ul>
+                  <li><h4>{csgodata.username}</h4></li>
+                  <li><p>{csgodata.email}</p></li>
+                  <li><p>{csgodata.country}</p></li>
+                </ul>
               </div>
           </div>
       </div>
@@ -84,8 +84,8 @@ function Dashboard() {
                   </div>
               </div>
           </div>
-      </div>
-      </section>
+        </div>
+        </section>
 
       {/* crosshair settings */}
       <section>
@@ -97,9 +97,9 @@ function Dashboard() {
                           <h4 className="text-right">Crosshair settings</h4>
                       </div>
                       <div className="row mt-3">
-                          <div className="col-md-12"><label className="labels">Mouse</label><input type="text" className="form-control" placeholder="" defaultValue={csgodata.mouse}></input></div>
-                          <div className="col-md-12"><label className="labels">MousePad</label><input type="text" className="form-control" placeholder="" defaultValue={csgodata.mousePad}></input></div>
-                          <div className="col-md-12"><label className="labels">KeyBoard</label><input type="text" className="form-control" placeholder="" defaultValue={csgodata.keyBoard}></input></div>
+                          <div className="col-md-12"><label className="labels">DPI</label><input type="text" className="form-control" placeholder="" defaultValue={csgodata.dpi}></input></div>
+                          <div className="col-md-12"><label className="labels">Sensitivity</label><input type="text" className="form-control" placeholder="" defaultValue={csgodata.sensitivity}></input></div>
+                          <div className="col-md-12"><label className="labels">Mouse Accel</label><input type="text" className="form-control" placeholder="" defaultValue="No"></input></div>
                       </div>
                   </div>
               </div>
@@ -109,8 +109,9 @@ function Dashboard() {
                           <h4 className="text-right" style={{"color":"white","textAlign":"right"}}>Peripherals</h4>
                       </div>
                       <div className="row mt-3">
-                          <div className="col-md-12"><label className="labels">HeadSet</label><input type="text" className="form-control" placeholder="" defaultValue={csgodata.headSet}></input></div>
-                          <div className="col-md-12"><label className="labels">Monitor</label><input type="text" className="form-control" placeholder="" defaultValue={csgodata.monitor} ></input></div>
+                          <div className="col-md-12"><label className="labels">Resolution X</label><input type="text" className="form-control" placeholder="" defaultValue={csgodata.resolutionX}></input></div>
+                          <div className="col-md-12"><label className="labels">Resolution Y</label><input type="text" className="form-control" placeholder="" defaultValue={csgodata.resolutionY} ></input></div>
+                          <div className="col-md-12"><label className="labels">Type</label><input type="text" className="form-control" placeholder="" defaultValue={csgodata.resolutionType} ></input></div>
                       </div>
                   </div>
               </div>
@@ -121,7 +122,7 @@ function Dashboard() {
       ) : (
         <h3>No settings found</h3>
       )}    
-    </>
+      </>
   );
 }
 

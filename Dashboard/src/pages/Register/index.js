@@ -37,12 +37,12 @@ function SignupPage() {
   const handleSignup = async(e) => {
     e.preventDefault();
     try {
-      await dispatch(register({ 
+      var x = await dispatch(register({ 
       Username: username,
       Password: password,
-      email: email
+      Email: email
     }));
-    toast.success('Registration successful!');
+    toast.success(x.value);
   } catch (error) {
     toast.error('Registration failed. Please try again.');
   }
