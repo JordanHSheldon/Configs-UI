@@ -2,7 +2,7 @@ import axios from 'axios'
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 // api urls
-const getSettingsById = "https://localhost:44345/api/Data/GetDataByName"
+const getSettingsById = "https://esportscompare.azurewebsites.net/Data/GetDataByName"
 const bearerToken = "bearer " + cookies.get("user");
 
 // Get user settingsdata

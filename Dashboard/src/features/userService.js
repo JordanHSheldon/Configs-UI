@@ -2,8 +2,8 @@ import axios from 'axios'
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-const LoginUrl = "https://localhost:44345/api/User/Login";
-const RegisterUrl = "https://localhost:44345/api/User/Register";
+const LoginUrl = "https://esportscompare.azurewebsites.net/api/User/Login";
+const RegisterUrl = "https://esportscompare.azurewebsites.net/api/User/Register";
 
 // Login user
 const Login = async (loginRequest) => {
