@@ -3,7 +3,7 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 // api urls
-const getSettingsById = "https://localhost:7191/api/Data/GetDataByName"
+const getSettingsById = "https://esportscompare.azurewebsites.net/api/Data/GetDataByName"
 const bearerToken = "bearer " + cookies.get("user");
 
 // Get user settingsdata
