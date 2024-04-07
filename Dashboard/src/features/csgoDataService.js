@@ -1,8 +1,9 @@
 import axios from 'axios'
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
+
 // api urls
-const getSettingsById = "https://esportscompare.azurewebsites.net/Data/GetDataByName"
+const getSettingsById = "https://localhost:7191/api/Data/GetDataByName"
 const bearerToken = "bearer " + cookies.get("user");
 
 // Get user settingsdata
@@ -14,27 +15,14 @@ const getCsgoData = async (x) => {
   const response = await axios.post(getSettingsById, request,
    {
     headers: {
-      Authorization: bearerToken
+      Authorization: bearerToken,
+      "Content-Type":"application/json"
     }
    }
   );
 
   return response.data;
 }
-
-// const getCsgoDataById = async (x) => {
-//   let request = {
-//     Alias: x,
-//   };
-
-//   const response = await axios.post(getSettingsById, request, {
-//     headers: {
-//       Authorization: bearerToken
-//     }
-//   });
-
-//   return response.data;
-// }
 
 const csgoDataService = {
   getCsgoData
