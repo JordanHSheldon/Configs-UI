@@ -6,6 +6,7 @@ import Navbar from "./Components/NavBar/Navbar";
 import Footer from "./Components/Footer";
 import Home from "./pages/Home";
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -13,18 +14,6 @@ function App() {
       <Navbar />
       <Router>
         <div className="container">
-          <ToastContainer className="toast-position"
-            position="top-center"
-            autoClose={10000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark"
-          />
           <Routes>
             <Route path="/" element={<Home />} /> 
             <Route path="/profile/:user" element={<Dashboard />} />
@@ -34,6 +23,15 @@ function App() {
         </div>
       </Router>
       <Footer />
+      <ToastContainer
+        position="top-right"
+        newestOnTop={true}
+        closeOnClick={true}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        pauseOnHover={true}
+        theme="dark"
+      ></ToastContainer>
     </>
   );
 }

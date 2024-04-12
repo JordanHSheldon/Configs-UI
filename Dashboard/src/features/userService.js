@@ -1,6 +1,4 @@
 import axios from 'axios'
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
 
 const LoginUrl = "https://esportscompare.azurewebsites.net/api/User/Login";
 const RegisterUrl = "https://esportscompare.azurewebsites.net/api/User/Register";
@@ -12,11 +10,7 @@ const Login = async (loginRequest) => {
     Password: loginRequest.Password 
   }
 
-  const response = await axios.post(LoginUrl, request);
-    
-  if(response.data !== undefined){
-    cookies.set("user",response.data.token,10000);
-  }
+  var response = await axios.post(LoginUrl, request);
   return response.data;
 }
 
@@ -27,10 +21,8 @@ const Register = async (registerRequest) => {
     Password: registerRequest.Password,
     Username: registerRequest.Username
   }
-  const response = await axios.post(RegisterUrl, request);
-  if(response.data !== undefined){
-    cookies.set("user",response.data.token,10000);
-  }
+
+  var response = await axios.post(RegisterUrl, request)
   return response.data;
 }
 
@@ -38,5 +30,7 @@ const userService = {
   Login,
   Register
 }
+
+
 
 export default userService;
