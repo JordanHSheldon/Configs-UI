@@ -36,17 +36,17 @@ function LoginPage() {
     }
   });
 
-  const handleLogin = async(e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(login({ 
+      dispatch(await login({ 
         Username: username,
         Password: password
       }));
-      toast.success('Login successful!');
     } catch (error) {
-      toast.error('Login failed. Please try again.');
+      // toast.error('Login failed. Please try again.');
     }
+
   };
 
   return (
