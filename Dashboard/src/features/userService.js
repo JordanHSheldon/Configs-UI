@@ -21,6 +21,7 @@ const Register = async (registerRequest) => {
     Password: registerRequest.Password,
     Username: registerRequest.Username
   }
+
   var response = await axios.post(RegisterUrl, request)
   return response.data;
 }

@@ -34,7 +34,7 @@ export const login = createAsyncThunk(
         throw new Error(result);
       }
 
-      cookies.set("user",result.result, 10000);
+      cookies.set("user", result.result, 10000);
       toast.success('Login successful!', {
         position:"top-right",
       });
@@ -57,7 +57,16 @@ export const register = createAsyncThunk(
   'register',
   async (x) => {
     try {
-      return await userService.Register(x)
+      var result = await userService.Register(x)
+      if(checkResult(result) === true){
+        throw new Error(result);
+      }
+
+      cookies.set("user", result.result, 10000);
+      toast.success('Login successful!', {
+        position:"top-right",
+      });
+      return result;
     } catch (error) {
       const userMessage =
         (error.response &&
@@ -66,6 +75,7 @@ export const register = createAsyncThunk(
         ) ||
         error.message ||
         error.toString()
+        toast.error('Login failed. Please try again.',error.message);
       return x.rejectWithValue(userMessage)
     }
   }
