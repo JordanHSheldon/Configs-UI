@@ -4,6 +4,7 @@ const cookies = new Cookies();
 
 // api urls
 const getSettingsById = "https://esportscompare.azurewebsites.net/api/Data/GetData"
+const UpdateDataEndpoint = "https://esportscompare.azurewebsites.net/api/Data/UpdateData"
 const bearerToken = "bearer " + cookies.get("user");
 
 // Get user settingsdata
@@ -38,7 +39,7 @@ const updateData = async (x) => {
     Monitor: "DEBUG",
   };
   console.log(request);
-  const response = await axios.post(getSettingsById, request,
+  const response = await axios.post(UpdateDataEndpoint, request,
     {
      headers: {
        Authorization: bearerToken,
