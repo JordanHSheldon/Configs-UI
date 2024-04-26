@@ -36,7 +36,7 @@ function Dashboard() {
   return (
     <>
     <br/>
-    <button onClick={handleUpdate()}></button>
+    <button onClick={() => handleUpdate()}></button>
     {/* Personal info */}
       {csgodata ? (
         <section>
