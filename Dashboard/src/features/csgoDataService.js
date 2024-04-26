@@ -26,7 +26,7 @@ const getCsgoData = async (x) => {
 
 const updateData = async (x) => {
   let request = {
-    Sensitivity:1.00,
+    Sensitivity:1,
     Dpi:400,
     ResolutionX:1920,
     ResolutionY:1080,
@@ -55,5 +55,5 @@ const csgoDataService = {
   getCsgoData,
   updateData
 }
-export const  { update } = updateData;
+
 export default csgoDataService;
