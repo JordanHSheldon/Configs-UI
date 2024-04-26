@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "../../Components/Spinner";
-import { getCsgoData, updateData } from "../../features/csgoDataSlice";
+import { getCsgoData } from "../../features/csgoDataSlice";
 import { useParams } from "react-router-dom";
 import "./dashboard.css";
+import { update } from "../../features/csgoDataService";
 
 function Dashboard() {
   const { csgodata, isLoading, isError, message } = useSelector(
@@ -15,7 +16,7 @@ function Dashboard() {
   const dispatch = useDispatch();
 
   const handleUpdate = () =>{
-    console.log(updateData("testing"));
+    console.log(update("testing"));
   }
   useEffect(() => {
     dispatch(getCsgoData(user));

@@ -55,5 +55,5 @@ const csgoDataService = {
   getCsgoData,
   updateData
 }
-
+export const  { update } = updateData;
 export default csgoDataService;
