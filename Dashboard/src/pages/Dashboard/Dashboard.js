@@ -33,7 +33,7 @@ function Dashboard() {
   return (
     <>
     <br/>
-    <button onClick={updateData("testing")}></button>
+    <button onClick={()=>updateData("testing")}></button>
     {/* Personal info */}
       {csgodata ? (
         <section>

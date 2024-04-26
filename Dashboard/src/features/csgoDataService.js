@@ -24,7 +24,7 @@ const getCsgoData = async (x) => {
   return response.data;
 }
 
-const updateData = async () => {
+const updateData = async (x) => {
   let request = {
     Sensitivity:"DEBUG",
     Dpi:"DEBUG",
