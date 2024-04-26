@@ -32,7 +32,8 @@ export const updateData = createAsyncThunk(
   async (x) => {
     try {
       console.log(x);
-      return await csgoDataService.updateData(x)
+      let result = await csgoDataService.updateData(x);
+      return result;
     } catch (error) {
       const message =
         (error.response &&

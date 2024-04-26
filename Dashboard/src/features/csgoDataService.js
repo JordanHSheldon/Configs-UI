@@ -26,10 +26,10 @@ const getCsgoData = async (x) => {
 
 const updateData = async (x) => {
   let request = {
-    Sensitivity:"DEBUG",
-    Dpi:"DEBUG",
-    ResolutionX:"DEBUG",
-    ResolutionY:"DEBUG",
+    Sensitivity:1.00,
+    Dpi:400,
+    ResolutionX:1920,
+    ResolutionY:1080,
     ResolutionType:"DEBUG",
     Mouse: "DEBUG", 
     MousePad: "DEBUG",
