@@ -14,6 +14,9 @@ function Dashboard() {
   const {user} = useParams();
   const dispatch = useDispatch();
 
+  const handleUpdate = () =>{
+    console.log(dispatch(updateData("testing")));
+  }
   useEffect(() => {
     dispatch(getCsgoData(user));
   },[dispatch,user]);
@@ -33,7 +36,7 @@ function Dashboard() {
   return (
     <>
     <br/>
-    <button onClick={updateData("testing")}></button>
+    <button onClick={handleUpdate()}></button>
     {/* Personal info */}
       {csgodata ? (
         <section>
@@ -53,7 +56,11 @@ function Dashboard() {
       </div>
       </section>
       ) : (
-        <h3>No settings found</h3>
+        <>
+          <button onClick={handleUpdate()}></button>
+          <h3>No settings found</h3>
+        </>
+        
       )}
 
       {/* gear */}
