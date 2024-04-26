@@ -66,17 +66,17 @@ export const csgoDataSlice = createSlice({
         state.isError = true
         state.csgodata = action.payload
       })
-      .addCase(updateData.pending, (state) => {
-        state.isLoading = true
-      })
-      .addCase(updateData.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.isSuccess = true
-      })
-      .addCase(updateData.rejected, (state, action) => {
-        state.isLoading = false
-        state.isError = true
-      })
+      // .addCase(updateData.pending, (state) => {
+      //   state.isLoading = true
+      // })
+      // .addCase(updateData.fulfilled, (state) => {
+      //   state.isLoading = false
+      //   state.isSuccess = true
+      // })
+      // .addCase(updateData.rejected, (state) => {
+      //   state.isLoading = false
+      //   state.isError = true
+      // })
   },
 })
 
