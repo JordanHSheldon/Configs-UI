@@ -15,7 +15,7 @@ function Dashboard() {
   const dispatch = useDispatch();
 
   const handleUpdate = () =>{
-    console.log(dispatch(updateData("testing")));
+    console.log(updateData("testing"));
   }
   useEffect(() => {
     dispatch(getCsgoData(user));
