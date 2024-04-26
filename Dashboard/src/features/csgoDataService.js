@@ -24,7 +24,7 @@ const getCsgoData = async (x) => {
   return response.data;
 }
 
-const updateData = async (req) => {
+const updateData = async () => {
   let request = {
     Sensitivity:"DEBUG",
     Dpi:"DEBUG",
@@ -37,7 +37,7 @@ const updateData = async (req) => {
     HeadSet: "DEBUG",
     Monitor: "DEBUG",
   };
-
+  console.log(request);
   const response = await axios.post(getSettingsById, request,
     {
      headers: {
@@ -46,7 +46,8 @@ const updateData = async (req) => {
      }
     }
   );
-    
+
+  console.log(response.data);
   return response.data;
 };
 

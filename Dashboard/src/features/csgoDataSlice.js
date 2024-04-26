@@ -72,7 +72,6 @@ export const csgoDataSlice = createSlice({
       .addCase(updateData.fulfilled, (state) => {
         state.isLoading = false
         state.isSuccess = true
-        state.csgodata = action.payload
       })
       .addCase(updateData.rejected, (state) => {
         state.isLoading = false
