@@ -27,6 +27,24 @@ export const getCsgoData = createAsyncThunk(
   }
 )
 
+export const updateData = createAsyncThunk(
+  'csgodata/update',
+  async (x) => {
+    try {
+      return await csgoDataService.updateData(x)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) ||
+        error.message ||
+        error.toString()
+      return x.rejectWithValue(message)
+    }
+  }
+)
+
 export const csgoDataSlice = createSlice({
   name: 'csgodata',
   initialState,
@@ -47,6 +65,17 @@ export const csgoDataSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.csgodata = action.payload
+      })
+      .addCase(updateData.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(updateData.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+      })
+      .addCase(updateData.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
       })
   },
 })

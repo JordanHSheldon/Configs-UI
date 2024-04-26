@@ -24,8 +24,35 @@ const getCsgoData = async (x) => {
   return response.data;
 }
 
+const updateData = async (req) => {
+  let request = {
+    Sensitivity:"DEBUG",
+    Dpi:"DEBUG",
+    ResolutionX:"DEBUG",
+    ResolutionY:"DEBUG",
+    ResolutionType:"DEBUG",
+    Mouse: "DEBUG", 
+    MousePad: "DEBUG",
+    KeyBoard: "DEBUG",
+    HeadSet: "DEBUG",
+    Monitor: "DEBUG",
+  };
+
+  const response = await axios.post(getSettingsById, request,
+    {
+     headers: {
+       Authorization: bearerToken,
+       "Content-Type":"application/json"
+     }
+    }
+  );
+    
+  return response.data;
+};
+
 const csgoDataService = {
-  getCsgoData
+  getCsgoData,
+  updateData
 }
 
 export default csgoDataService;

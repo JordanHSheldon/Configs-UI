@@ -11,6 +11,7 @@ const Login = async (loginRequest) => {
   }
 
   var response = await axios.post(LoginUrl, request);
+  console.log(response.data);
   return response.data;
 }
 
@@ -22,7 +23,8 @@ const Register = async (registerRequest) => {
     Username: registerRequest.Username
   }
 
-  var response = await axios.post(RegisterUrl, request)
+  var response = await axios.post(RegisterUrl, request);
+  console.log(response.data);
   return response.data;
 }
 

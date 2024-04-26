@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "../../Components/Spinner";
-import { getCsgoData } from "../../features/csgoDataSlice";
+import { getCsgoData, updateData } from "../../features/csgoDataSlice";
 import { useParams } from "react-router-dom";
 import "./dashboard.css";
 
@@ -10,6 +10,7 @@ function Dashboard() {
     (state) => state.csgodata
   );
   
+  // make whole page a form and then on button click save the data.
   const {user} = useParams();
   const dispatch = useDispatch();
 
@@ -32,6 +33,7 @@ function Dashboard() {
   return (
     <>
     <br/>
+    <button onClick={updateData()}></button>
     {/* Personal info */}
       {csgodata ? (
         <section>
