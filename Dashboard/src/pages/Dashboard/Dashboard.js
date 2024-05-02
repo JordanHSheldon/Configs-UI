@@ -39,7 +39,6 @@ function Dashboard() {
     <br/>
     <button onClick={() => handleUpdate()}></button>
     {/* Personal info */}
-      {/* {csgodata ? ( */}
         <section>
           <div className="container rounded bg-white mt-5 mb-5">
             <div className="row">
@@ -59,14 +58,8 @@ function Dashboard() {
           </div>
         </div>
       </section>
-      {/* ) : (
-        <>
-          <h3>No settings found</h3>
-        </>
-      )} */}
 
       {/* {csgodata ? ( */}
-        <>
         <section>
           <div className="container rounded bg-white mt-5 mb-5">
             <div className="row">
@@ -128,10 +121,6 @@ function Dashboard() {
           </div>
       </div>
       </section>
-      </>
-      {/* // ) : (
-      //   <h3>No settings found</h3>
-      // )}     */}
       </>
   );
 }
