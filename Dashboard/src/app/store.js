@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import csgoDataReducer from '../features/csgoDataSlice';
+import dataReducer from '../features/dataSlice';
 import userReducer from '../features/userSlice';
 export const store = configureStore({
     reducer:{
-        csgodata:csgoDataReducer,
+        csgodata:dataReducer,
         userdata:userReducer
     }
 });

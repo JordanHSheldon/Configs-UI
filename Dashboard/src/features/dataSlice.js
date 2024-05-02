@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import csgoDataService from './csgoDataService'
+import dataService from './dataService'
 
 const initialState = {
   csgodata: [],
@@ -9,11 +9,11 @@ const initialState = {
   message: '',
 }
 
-export const getCsgoData = createAsyncThunk(
+export const getData = createAsyncThunk(
   'csgodata/get',
   async (x) => {
     try {
-      return await csgoDataService.getCsgoData(x)
+      return await dataService.getData(x)
     } catch (error) {
       const message =
         (error.response &&
@@ -32,7 +32,7 @@ export const updateData = createAsyncThunk(
   async (x) => {
     try {
       console.log(x);
-      let result = await csgoDataService.updateData(x);
+      let result = await dataService.updateData(x);
 
       console.log(result);
       return result;
@@ -49,7 +49,7 @@ export const updateData = createAsyncThunk(
   }
 )
 
-export const csgoDataSlice = createSlice({
+export const dataSlice = createSlice({
   name: 'csgodata',
   initialState,
   reducers: {
@@ -57,15 +57,15 @@ export const csgoDataSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getCsgoData.pending, (state) => {
+      .addCase(getData.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(getCsgoData.fulfilled, (state, action) => {
+      .addCase(getData.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
         state.csgodata = action.payload
       })
-      .addCase(getCsgoData.rejected, (state, action) => {
+      .addCase(getData.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.csgodata = action.payload
@@ -86,5 +86,5 @@ export const csgoDataSlice = createSlice({
   },
 })
 
-export const { reset } = csgoDataSlice.actions
-export default csgoDataSlice.reducer
+export const { reset } = dataSlice.actions
+export default dataSlice.reducer

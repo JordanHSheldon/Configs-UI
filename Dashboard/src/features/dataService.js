@@ -9,7 +9,7 @@ const UpdateDataEndpoint = "https://esportscompare.azurewebsites.net/api/Data/Up
 const bearerToken = "bearer " + cookies.get("user");
 
 // Get user settingsdata
-const getCsgoData = async (x) => {
+const getData = async (x) => {
   let request = {
     username: x,
   };
@@ -53,9 +53,9 @@ const updateData = async (x) => {
   return response.data;
 };
 
-const csgoDataService = {
-  getCsgoData,
+const dataService = {
+  getData,
   updateData
 }
 
-export default csgoDataService;
+export default dataService;

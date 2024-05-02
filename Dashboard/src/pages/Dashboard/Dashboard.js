@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "../../Components/Spinner";
-import { getCsgoData, updateData } from "../../features/csgoDataSlice";
+import { getData, updateData } from "../../features/dataSlice";
 import { useParams } from "react-router-dom";
 import "./dashboard.css";
 
@@ -19,7 +19,7 @@ function Dashboard() {
     console.log(taco);
   }
   useEffect(() => {
-    dispatch(getCsgoData(user));
+    dispatch(getData(user));
   },[dispatch,user]);
   
   if (isLoading) {
@@ -39,12 +39,15 @@ function Dashboard() {
     <br/>
     <button onClick={() => handleUpdate()}></button>
     {/* Personal info */}
-      {csgodata ? (
+      {/* {csgodata ? ( */}
         <section>
           <div className="container rounded bg-white mt-5 mb-5">
-          <div className="row">
+            <div className="row">
               <div className="col-md-3 border-right">
-                  <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" width="150px" alt="profile" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"></img><span className="font-weight-bold">FirstName{" "+ csgodata.username +" "}LastName</span></div>
+                  <div className="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img className="rounded-circle mt-5" width="150px" alt="profile" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"></img>
+                    <span className="font-weight-bold">FirstName{" "+ csgodata.username +" "}LastName</span>
+                  </div>
               </div>
               <div className="col-md-5 border-right" style={{"paddingTop":"5em"}}>
                 <ul>
@@ -54,22 +57,19 @@ function Dashboard() {
                 </ul>
               </div>
           </div>
-      </div>
+        </div>
       </section>
-      ) : (
+      {/* ) : (
         <>
-          <button onClick={handleUpdate()}></button>
           <h3>No settings found</h3>
         </>
-        
-      )}
+      )} */}
 
-      {/* gear */}
-      {csgodata ? (
+      {/* {csgodata ? ( */}
         <>
         <section>
           <div className="container rounded bg-white mt-5 mb-5">
-          <div className="row">
+            <div className="row">
               <div className="col-md-5">
                   <div className="p-3 py-5">
                       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -129,9 +129,9 @@ function Dashboard() {
       </div>
       </section>
       </>
-      ) : (
-        <h3>No settings found</h3>
-      )}    
+      // ) : (
+      //   <h3>No settings found</h3>
+      // )}    
       </>
   );
 }
