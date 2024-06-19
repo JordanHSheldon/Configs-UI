@@ -14,7 +14,7 @@ import Link from 'next/link';
 const SideNav = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleMenu = (event) => {
+  const handleMenu = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
 
