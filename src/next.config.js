@@ -8,5 +8,6 @@ module.exports = {
     experimental: {
         runtime: 'edge',
     },
+    presets: ["next/babel"],
 }
 
