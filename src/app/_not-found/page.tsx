@@ -1,5 +1,6 @@
 "use client";
 
+export const runtime = 'edge';
 import {Container} from '@mui/material';
 
 export default function Page() {
