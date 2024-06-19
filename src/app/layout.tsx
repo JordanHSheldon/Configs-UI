@@ -1,6 +1,7 @@
  import '@/app/global.css';
 import SideNav from './sidenav';
 import { CookiesProvider } from 'next-client-cookies/server';
+export const runtime = 'edge' // 'nodejs' (default) | 'edge'
 
 export default function RootLayout({
   children,
