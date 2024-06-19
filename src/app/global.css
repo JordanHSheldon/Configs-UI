@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.profile {
+
+}
+
+.profile a {
+    text-decoration: none;
+}
+
+.body {
+    padding: 20px 20px 60px;
+    max-width: 680px;
+    margin: 0 auto;
+}
