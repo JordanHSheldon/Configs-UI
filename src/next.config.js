@@ -3,7 +3,7 @@
 
 module.exports = {
     env: {
-        url: 'https://esportscompare.azurewebsites.net/api'//'https://localhost:7191/api',
+        url: process.env.NEXT_PUBLIC_EC_PLAYERDATA_URL //'https://esportscompare.azurewebsites.net/api'//'https://localhost:7191/api',
     },
     experimental: {
         runtime: 'edge',
