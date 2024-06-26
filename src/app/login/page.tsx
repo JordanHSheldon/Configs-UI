@@ -82,7 +82,7 @@ async function Login(username: string, password: string): Promise<cred> {
     Password: password
   };
 
-  const response = await fetch(process.env.url+'api/User/login', {
+  const response = await fetch(process.env.url+'/User/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
