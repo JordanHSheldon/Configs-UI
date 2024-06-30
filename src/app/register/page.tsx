@@ -1,4 +1,4 @@
-//"use client";
+"use client";
 
 import { setCookie } from "cookies-next";
 import { useState } from 'react';
