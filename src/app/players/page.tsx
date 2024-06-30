@@ -5,8 +5,6 @@ import { User } from "../lib/definitions";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Grid from "@mui/material/Grid";
-import { dot } from "node:test/reporters";
-// import Item from "@mui/material/Item";
 
 export default function Page() {
   const pagination = 10;
@@ -66,7 +64,7 @@ export default function Page() {
         <>
         <Grid container justifyContent={"center"}  alignItems="center">
           {data.map((user) => (
-            <Grid container alignItems="center" spacing={0} direction="column">
+            <Grid container alignItems="center" spacing={0} direction="column" key={user.id}>
               <h2>{user?.firstName} {user?.userName} {user?.lastName}</h2>
             </Grid>
           ))}
