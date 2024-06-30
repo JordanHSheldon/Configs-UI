@@ -14,6 +14,12 @@ export type cred = {
 
 export type User = {
   id: string;
+  userName: string;
+  firstName: string;
+  lastName: string;
+};
+
+export type PaginatedUser = {
   username: string;
   firstName: string;
   lastName: string;
@@ -31,3 +37,4 @@ export type Profile = {
   headSet: string;
   monitor: string;
 }
+
