@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Profile } from "../lib/definitions";
 import { useCookies } from 'next-client-cookies';
-import { Box, Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 export default function Page() {
   
@@ -48,20 +48,19 @@ export default function Page() {
       setLoading(false); // End loading
     }
   }
+
   return (
-    <Container>
-      <Box display="flex" flexDirection="column" alignItems="center" mt={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          {profile.firstName}
-        </Typography>
-        <Typography variant="body1" color="textSecondary">
-          {profile.userName}
-        </Typography>
-        <Typography variant="body1" color="textSecondary">
-          {profile.lastName}
-        </Typography>
-      </Box>
-    </Container>
+    <div>
+      <Typography variant="h4" component="h1" gutterBottom>
+        {profile.firstName}
+      </Typography>
+      <Typography variant="body1" color="textSecondary">
+        {profile.userName}
+      </Typography>
+      <Typography variant="body1" color="textSecondary">
+        {profile.lastName}
+      </Typography>
+    </div>
   );
 }
 

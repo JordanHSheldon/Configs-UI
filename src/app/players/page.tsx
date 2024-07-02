@@ -5,6 +5,7 @@ import { User } from "../lib/definitions";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Grid from "@mui/material/Grid";
+import Link from "next/link";
 
 export default function Page() {
   const pagination = 10;
@@ -58,29 +59,34 @@ export default function Page() {
   };
 
   return (
-    <>
+    <div>
     <br />
       {data ? (
         <>
-        <Grid container justifyContent={"center"}  alignItems="center">
+        <Grid container justifyContent={"center"} alignItems="center">
           {data.map((user) => (
             <Grid container alignItems="center" spacing={0} direction="column" key={user.id}>
-              <h2>{user?.firstName} {user?.userName} {user?.lastName}</h2>
+              <table>
+                <td>{user?.firstName}</td>
+                <td><Link href={"/u/"+user?.userName}>{user?.userName}</Link></td>
+                <td>{user?.lastName}</td>
+              </table>
+              <br/>
             </Grid>
           ))}
           <br/>
           </Grid>
+          <br />
           <Grid container spacing={0} justifyContent={"center"}>
             <span>
-              <button onClick={handlePrevious} disabled={offset === 0}><KeyboardArrowLeftIcon/> Prev </button> 
-              <button onClick={handleNext}>Next <ChevronRightIcon /></button>
+              <button onClick={handlePrevious} disabled={offset === 0}><KeyboardArrowLeftIcon/></button>
+              <button onClick={handleNext}><ChevronRightIcon /></button>
             </span>
           </Grid>
         </>
       ) : (
         <p>No data available.</p>
       )}
-
-    </>
+      </div>
   );
 }

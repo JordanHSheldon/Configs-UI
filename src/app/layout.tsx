@@ -1,7 +1,9 @@
  import '@/app/global.css';
 import SideNav from './sidenav';
 import { CookiesProvider } from 'next-client-cookies/server';
-export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+import { Toaster } from 'react-hot-toast';
+import { Box, Container } from '@mui/material';
+export const runtime = 'edge'
 
 export default function RootLayout({
   children,
@@ -9,15 +11,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
     <html lang="en">
       <body> 
         <CookiesProvider>
           <SideNav />
-          {children}
+          <Toaster position="bottom-right" reverseOrder={false} />
+          <Container>
+            <Box display="flex" flexDirection="column" alignItems="center" mt={4}>
+              {children}
+            </Box>
+          </Container>
         </CookiesProvider>
       </body>
     </html>
-    </>
   );
 }

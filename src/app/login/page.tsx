@@ -5,8 +5,9 @@ import { useCookies } from 'next-client-cookies';
 import { useEffect, useState } from 'react';
 import { cred } from '../lib/definitions';
 import { useRouter } from 'next/navigation';
-import { TextField, Button, Container, Box, Typography } from '@mui/material';
+import { TextField, Button, Box, Typography } from '@mui/material';
 import Link from "next/link";
+import Toast from 'react-hot-toast'
 
 export default function Page() {
   const [username, setUsername] = useState('');
@@ -24,20 +25,20 @@ export default function Page() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let cred = (await Login(username, password)).result;
+    
+    if(cred == "Not found"){
+      Toast.error(cred);
+      return;
+    }
+
     setCookie("user", cred, { maxAge: 60 * 6 * 24 });
+    Toast.success("Logged in succesfully")
     router.push("/profile");
     return;
   };
 
   return (
-    <Container maxWidth="xs">
-      <Box 
-        display="flex" 
-        flexDirection="column" 
-        alignItems="center" 
-        justifyContent="center" 
-        minHeight="100vh"
-      >
+    <div>
         <Typography variant="h4" component="h1" gutterBottom>
           Login
         </Typography>
@@ -71,8 +72,7 @@ export default function Page() {
       <Link href="/register">
         Do not have an account?
       </Link>
-      </Box>
-    </Container>
+      </div>
   );
 };
 

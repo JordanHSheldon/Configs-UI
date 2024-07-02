@@ -10,10 +10,14 @@ import MenuItem from '@mui/material/MenuItem';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Link from 'next/link';
+import { useCookies } from 'next-client-cookies';
 
 const SideNav = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
+  const cookieStore = useCookies();
+  const user = cookieStore.get('user');
+  
   const handleMenu = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
@@ -22,25 +26,25 @@ const SideNav = () => {
     setAnchorEl(null);
   };
 
+  const navItems = [
+    { href: '/', label: 'Home' },
+    { href: '/players', label: 'Players' },
+    { href: '/peripherals', label: 'Peripherals' },
+    user ? { href: '/profile', label: 'Profile' } : { href: '/login', label: 'Login' }
+  ];
+
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{backgroundColor: 'black'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Link href="/" passHref>
-              <MenuItem component="p">Home</MenuItem>
-            </Link>
-            <Link href="/players" passHref>
-              <MenuItem component="p">Players</MenuItem>
-            </Link>
-            <Link href="/peripherals" passHref>
-              <MenuItem component="p">Peripherals</MenuItem>
-            </Link>
-            <Link href="/login" passHref>
-              <MenuItem component="p">Login</MenuItem>
-            </Link>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' },backgroundColor: 'black', justifyContent: 'center' }} alignItems="center">
+            {navItems.map((item, index) => (
+              <Link href={item.href} passHref key={index}>
+                <MenuItem component="p">{item.label}</MenuItem>
+              </Link>
+            ))}
           </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'center', flexGrow: 1 }} alignItems="center">
             <IconButton
               size="large"
               edge="start"
@@ -65,21 +69,11 @@ const SideNav = () => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <Link href="/" passHref>
-                <MenuItem component="p" onClick={handleClose}>Home</MenuItem>
-              </Link>
-              <Link href="/peripherals" passHref>
-                <MenuItem component="p" onClick={handleClose}>Peripherals</MenuItem>
-              </Link>
-              <Link href="/players" passHref>
-                <MenuItem component="p" onClick={handleClose}>Players</MenuItem>
-              </Link>
-              <Link href="/login" passHref>
-                <MenuItem component="p" onClick={handleClose}>Login</MenuItem>
-              </Link>
-              <Link href="/profile" passHref>
-                <MenuItem component="p" onClick={handleClose}>Profile</MenuItem>
-              </Link> 
+              {navItems.map((item, index) => (
+                <Link href={item.href} passHref key={index}>
+                  <MenuItem onClick={handleClose} component="p">{item.label}</MenuItem>
+                </Link>
+              ))}
             </Menu>
           </Box>
         </Toolbar>
