@@ -63,10 +63,15 @@ export default function Page() {
     <br />
       {data ? (
         <>
-        <Grid container justifyContent={"center"}  alignItems="center">
+        <Grid container justifyContent={"center"} alignItems="center">
           {data.map((user) => (
             <Grid container alignItems="center" spacing={0} direction="column" key={user.id}>
-              <h2>{user?.firstName}</h2> <Link href={"/user/"+user?.userName}>{user?.userName}</Link> <h2>{user?.lastName}</h2>
+              <table>
+                <td>{user?.firstName}</td>
+                <td><Link href={"/u/"+user?.userName}>{user?.userName}</Link></td>
+                <td>{user?.lastName}</td>
+              </table>
+              <br/>
             </Grid>
           ))}
           <br/>
