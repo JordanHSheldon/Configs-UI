@@ -29,8 +29,8 @@ export type Profile = {
   id: string;
   userName: string;
   firstName: string;
+  dpi: number
   lastName: string;
-  email: string;
   mouse: string;
   mousePad: string;
   keyBoard: string;

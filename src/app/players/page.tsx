@@ -6,6 +6,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Grid from "@mui/material/Grid";
 import Link from "next/link";
+import Spinner from "../Components/Spinner/spinner";
 
 export default function Page() {
   const pagination = 10;
@@ -17,7 +18,7 @@ export default function Page() {
     GetPaginatedUsers(offset, pagination);
   }, [offset, pagination]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner />;
 
   async function GetPaginatedUsers(offset: number, limit: number): Promise<void> {
     setLoading(true);
@@ -45,6 +46,7 @@ export default function Page() {
       setData(profileData); // Update state with profile data
     } catch (error) {
       console.error('Fetch error:', error);
+      setLoading(false); 
     } finally {
       setLoading(false); // End loading
     }

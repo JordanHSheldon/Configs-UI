@@ -29,7 +29,6 @@ const SideNav = () => {
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/players', label: 'Players' },
-    { href: '/peripherals', label: 'Peripherals' },
     user ? { href: '/profile', label: 'Profile' } : { href: '/login', label: 'Login' }
   ];
 

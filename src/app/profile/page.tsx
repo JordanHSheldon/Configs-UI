@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { Profile } from "../lib/definitions";
 import { useCookies } from 'next-client-cookies';
-import { Typography } from "@mui/material";
+import './profile.css'
+import Spinner from "../Components/Spinner/spinner";
 
 export default function Page() {
   
@@ -11,7 +12,6 @@ export default function Page() {
   const user = cookieStore.get('user');
   const [profile, setProfile] = useState<Profile | null>(null)
   const [isLoading, setLoading] = useState(true)
- 
   useEffect(() => {
     if (user) {
       GetProfileData(user);
@@ -20,11 +20,11 @@ export default function Page() {
     }
   }, [user]);
  
-  if (isLoading) return <p>Loading...</p>
+  if (isLoading) return <Spinner />
   if (!profile) return <p>No profile data</p>
 
   async function GetProfileData(token: string): Promise<void> {
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
       const response = await fetch(`${process.env.url}/Data/GetUserProfile`, {
         method: 'POST',
@@ -34,33 +34,33 @@ export default function Page() {
         },
       });
 
-      // Ensure the response is OK
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
 
-      // Parse the response body only once
       const profileData: Profile = await response.json();
-      setProfile(profileData); // Update state with profile data
+      setProfile(profileData);
     } catch (error) {
       console.error('Fetch error:', error);
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
     }
   }
 
   return (
     <div>
-      <Typography variant="h4" component="h1" gutterBottom>
-        {profile.firstName}
-      </Typography>
-      <Typography variant="body1" color="textSecondary">
-        {profile.userName}
-      </Typography>
-      <Typography variant="body1" color="textSecondary">
-        {profile.lastName}
-      </Typography>
+      <img src=""></img>
+      <div>
+        <div>
+          <h1>{profile.userName}</h1>
+          <button>Edit</button>
+        </div>
+        <div>
+          <h2>{profile.firstName} {profile.lastName}</h2>
+        </div>
+      </div>
+      <hr />
     </div>
-  );
+);
 }
 

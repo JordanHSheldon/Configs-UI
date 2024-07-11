@@ -1,80 +1,63 @@
-import { Container, Box, Typography, Grid, Paper } from '@mui/material';
+"use client"
 
-interface PlayerProfile {
-  id: string,
-  firstName: string,
-  lastName: string,
-  email: string,
-  userName: string,
-  mouse: string,
-  mousePad: string,
-  keyBoard: string,
-  headSet: string,
-  monitor: string
-}
+import Spinner from '@/app/Components/Spinner/spinner';
+import { Profile } from '@/app/lib/definitions';
+import { Container} from '@mui/material';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-const player: PlayerProfile = {
-  id: 'John Doe',
-  firstName: "Jordan",
-  lastName: "Sheldon",
-  email: "Jordanhsheldon@gmail.com",
-  userName: "NADROJ",
-  mouse: "GproWireless",
-  mousePad: "Razer Goliath",
-  keyBoard: "Razer BlackWidow Chroma",
-  headSet: "Razer Krakens",
-  monitor: "LG 27 inch"
-};
+const UserProfile = () => {
+  const [profile, setProfile] = useState<Profile | null>(null)
+  const [isLoading, setLoading] = useState(true);
+  const pathname = usePathname();
 
-const Profile = () => {
+  useEffect(() => {
+    if (pathname) {
+      const pathItems = pathname.split("/");
+      GetProfileData(pathItems[pathItems.length - 1]);
+    } else {
+      setLoading(false);
+    }
+  }, [pathname]);
+ 
+  if (isLoading) return <Spinner />
+  if (!profile) return <p>No profile data</p>
+
+  async function GetProfileData(username: string): Promise<void> {
+    setLoading(true);
+    try {
+      let request = {
+        username: username
+      }
+      
+      const response = await fetch(`${process.env.url}/Data/GetDataByUserName`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(request)
+      });
+
+      // Ensure the response is OK
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      // Parse the response body only once
+      const profileData: Profile = await response.json();
+      setProfile(profileData);
+    } catch (error) {
+      console.error('Fetch error:', error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <Container maxWidth="md">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          {player.userName}: {player.firstName}  {player.lastName}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Location: NA
-        </Typography>
-
-        <Box sx={{ my: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom>
-            Peripherals
-          </Typography>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
-              <Paper elevation={3} sx={{ p: 2 }}>
-                <Typography variant="h6" gutterBottom>
-                  Resolution
-                </Typography>
-                {/* <Typography>{player.settings.resolution}</Typography> */}
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Paper elevation={3} sx={{ p: 2 }}>
-                <Typography variant="h6" gutterBottom>
-                  Sensitivity
-                </Typography>
-                {/* <Typography>{player.settings.sensitivity}</Typography> */}
-              </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper elevation={3} sx={{ p: 2 }}>
-                <Typography variant="h6" gutterBottom>
-                  Key Bindings
-                </Typography>
-                {Object.entries(player).map(([action, key]) => (
-                  <Typography key={action}>
-                    {action}: {key}
-                  </Typography>
-                ))}
-              </Paper>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-    </Container>
+    <main>
+        <h1>{profile.userName}: {profile.firstName} {profile.lastName}</h1>
+    </main>
   );
 };
 
-export default Profile;
+export default UserProfile;
