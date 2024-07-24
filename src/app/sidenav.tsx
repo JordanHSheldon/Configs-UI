@@ -18,7 +18,7 @@ const SideNav = () => {
         </form>
         {user ? <a href="/login" className="login-btn">Login / Signup</a> :
           <div className="navbar-right">
-            <img src="logo.png" alt="Logo"></img>
+            <a href='/profile'><img src="logo.png" alt="Logo"></img></a>
         </div>
         }
       </div>
