@@ -7,11 +7,11 @@ import './profile.css'
 import Spinner from "../Components/Spinner/spinner";
 
 export default function Page() {
-  
   const cookieStore = useCookies();
   const user = cookieStore.get('user');
   const [profile, setProfile] = useState<Profile | null>(null)
   const [isLoading, setLoading] = useState(true)
+  
   useEffect(() => {
     if (user) {
       GetProfileData(user);
@@ -21,7 +21,7 @@ export default function Page() {
   }, [user]);
  
   if (isLoading) return <Spinner />
-  if (!profile) return <p>No profile data</p>
+  if (!profile) return <p>No profile data, check back later</p>
 
   async function GetProfileData(token: string): Promise<void> {
     setLoading(true);
@@ -48,19 +48,66 @@ export default function Page() {
   }
 
   return (
-    <div>
-      <img src=""></img>
-      <div>
-        <div>
-          <h1>{profile.userName}</h1>
-          <button>Edit</button>
-        </div>
-        <div>
-          <h2>{profile.firstName} {profile.lastName}</h2>
-        </div>
+    <>
+      <div className="profile">
+          <div className="header">
+              <a href="/profile/edit/" className="edit-btn">Edit</a>
+          </div>
+          <div className="profile-info">
+              <div className="profile-picture">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb51ZwKCKqU4ZrB9cfaUNclbeRiC-V-KZsfQ&s" alt="Profile Picture" />
+                  <div className="connections">
+                      {/* <a href="https://twitter.com/username" target="_blank">Twitter</a>
+                      <a href="https://instagram.com/username" target="_blank">Instagram</a> */}
+                  </div>
+              </div>
+              <div className="user-details">
+                <h2>{profile?.userName}</h2>
+                <p>{profile?.firstName} {profile?.lastName}</p>
+              </div>
+          </div>
+
+          <br />
+          <hr />
+          <br />
+
+          {/* Perihperals section */}
+          <div className="additional-section">
+              <h1>Peripherals</h1>
+              <div className="additional-info">
+                  <div className="additional-info-item">
+                      <span className="info-label">Mouse:</span>
+                      <span className="info-value">{profile?.mouse}</span>
+                  </div>
+                  <div className="additional-info-item">
+                      <span className="info-label">MousePad:</span>
+                      <span className="info-value">{profile?.mousePad}</span>
+                  </div>
+                  <div className="additional-info-item">
+                      <span className="info-label">Keyboard:</span>
+                      <span className="info-value">{profile?.keyBoard}</span>
+                  </div>
+                  <div className="additional-info-item">
+                      <span className="info-label">Headset:</span>
+                      <span className="info-value">{profile?.headSet}</span>
+                  </div>
+                  <div className="additional-info-item">
+                      <span className="info-label">Monitor:</span>
+                      <span className="info-value">{profile?.monitor}</span>
+                  </div>
+              </div>
+          </div>
+
+          <br />
+          <hr />
+          <br />
+
+          {/* Another section below additional information */}
+          <div className="more-section">
+              
+          </div>
+          <br />
       </div>
-      <hr />
-    </div>
+  </>
 );
 }
-

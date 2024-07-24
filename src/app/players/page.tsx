@@ -2,11 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { User } from "../lib/definitions";
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Grid from "@mui/material/Grid";
-import Link from "next/link";
 import Spinner from "../Components/Spinner/spinner";
+import Playercard from "./Playercard";
 
 export default function Page() {
   const pagination = 10;
@@ -33,6 +31,7 @@ export default function Page() {
         headers: {
           'Content-Type': 'application/json',
         },
+
         body: JSON.stringify(request)
       });
 
@@ -52,12 +51,8 @@ export default function Page() {
     }
   }
 
-  const handleNext = () => {
+  const handleLoadMore = () => {
     setOffset(prevOffset => prevOffset + pagination);
-  };
-
-  const handlePrevious = () => {
-    setOffset(prevOffset => (prevOffset - pagination < 0 ? 0 : prevOffset - pagination));
   };
 
   return (
@@ -65,25 +60,17 @@ export default function Page() {
     <br />
       {data ? (
         <>
-        <Grid container justifyContent={"center"} alignItems="center">
+        <Grid container justifyContent={"center"} alignItems="left">
           {data.map((user) => (
-            <Grid container alignItems="center" spacing={0} direction="column" key={user.id}>
-              <table>
-                <td>{user?.firstName}</td>
-                <td><Link href={"/u/"+user?.userName}>{user?.userName}</Link></td>
-                <td>{user?.lastName}</td>
-              </table>
-              <br/>
-            </Grid>
+            <div style={{"padding":"10px"}}>
+              <Playercard key={user.id} userName={user.userName} id={user.id} firstName={user.firstName} lastName={user.lastName}/>
+            </div>
           ))}
           <br/>
           </Grid>
           <br />
           <Grid container spacing={0} justifyContent={"center"}>
-            <span>
-              <button onClick={handlePrevious} disabled={offset === 0}><KeyboardArrowLeftIcon/></button>
-              <button onClick={handleNext}><ChevronRightIcon /></button>
-            </span>
+              <button onClick={handleLoadMore} disabled={offset === 0}>Load more</button>
           </Grid>
         </>
       ) : (

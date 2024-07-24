@@ -1,0 +1,40 @@
+.card {
+    width: 200px;
+    border: 1px solid #b8a9a9;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(1, 1, 1, 0.2);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .imageContainer {
+    background-color: #f1f1f1;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profileImage {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .detailsContainer {
+    padding: 16px;
+  }
+  
+  .name {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .details {
+    font-size: 16px;
+    color: #666;
+    margin-top: 8px;
+  }
+  

@@ -4,12 +4,22 @@ import {useEffect, useState } from "react";
 import { useCookies } from 'next-client-cookies';
 import Spinner from "@/app/Components/Spinner/spinner";
 import { Profile } from "@/app/lib/definitions";
+import './styles.css'
 
 export default function Page() {
     const cookieStore = useCookies();
     const user = cookieStore.get('user');
-
-    const [profile, setProfile] = useState<Profile | null>(null)
+    const [profile, setProfile] = useState<Profile | null>(null);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    // const [dpi, setDpi] = useState(profile?.dpi);
+    const [mouse, setMouse] = useState("");
+    const [mousePad, setMousePad] = useState("");
+    const [keyboard, setKeyboard] = useState("");
+    const [headset, setHeadset] = useState("");
+    const [monitor, setMonitor] = useState("");
+    // const [twitter, setTwitter] = useState('https://twitter.com/username');
+    // const [instagram, setInstagram] = useState('https://instagram.com/username');
     const [isLoading, setLoading] = useState(true)
     useEffect(() => {
       if (user) {
@@ -19,6 +29,19 @@ export default function Page() {
       }
     }, [user]);
    
+    useEffect(() => {
+        if (profile) {
+            // Set initial values from profile if it exists
+            setFirstName(profile.firstName ?? '');
+            setLastName(profile.lastName ?? '');
+            setMouse(profile.mouse ?? '');
+            setMousePad(profile.mousePad ?? '');
+            setKeyboard(profile.keyBoard ?? '');
+            setHeadset(profile.headSet ?? '');
+            setMonitor(profile.monitor ?? '');
+        }
+    }, [profile]);
+
     if (isLoading) return <Spinner />
     if (!profile) return <p>No profile data</p>
   
@@ -46,31 +69,34 @@ export default function Page() {
         }
     }
 
-    const handleChange = (e: any) => {
-        const { name, value } = e.target;
-        setProfile({
-          ...profile,
-          [name]: value
-        });
-    };
-
-    async function UpdateProfileData(token: string,data: Profile): Promise<void> {
+    async function UpdateProfileData(): Promise<void> {
     setLoading(true);
+    const data: Profile = {
+        id: "",
+        userName: profile?.userName ?? "",
+        firstName: firstName ?? profile?.firstName ?? "",
+        email: profile?.email ?? "default@email.com",
+        dpi: 0,
+        lastName: lastName ?? profile?.lastName ?? "",
+        mouse: mouse ?? profile?.mouse ?? "",
+        mousePad: mousePad ?? profile?.mousePad ?? "",
+        keyBoard: keyboard ?? profile?.keyBoard ?? "",
+        headSet:  headset ?? profile?.headSet ?? "",
+        monitor:  monitor ?? profile?.monitor ?? "",
+    }
     try {
         const response = await fetch(`${process.env.url}/Data/UpdateDataById`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
+            'Authorization': 'Bearer ' + user
         },
         body: JSON.stringify(data)
         });
-
         if (!response.ok) {
         throw new Error('Network response was not ok');
         }
 
-        // update state.
     } catch (error) {
         console.error('Fetch error:', error);
     } finally {
@@ -78,42 +104,107 @@ export default function Page() {
     }
     }
 
-    async function handleUpdate(e: any){
-        e.preventDefault();
-        if(user != null && profile != null) UpdateProfileData(user,profile);
-        else console.log("Error!")
-    }
-
   return (
-    <div>
-        <form action="/update" method="post">
-            
-            <label htmlFor="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" required value={profile.firstName} onChange={handleChange}/>
-
-            <label htmlFor="dpi">DPI:</label>
-            <input type="text" id="dpi" name="dpi" required value={profile.dpi} onChange={handleChange}/>
-
-            <label htmlFor="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" required value={profile.lastName} onChange={handleChange}/>
-
-            <label htmlFor="mouse">Mouse:</label>
-            <input type="text" id="mouse" name="mouse" required value={profile.mouse} onChange={handleChange}/>
-
-            <label htmlFor="mousePad">Mouse Pad:</label>
-            <input type="text" id="mousePad" name="mousePad" required value={profile.mousePad} onChange={handleChange}/>
-
-            <label htmlFor="keyBoard">Keyboard:</label>
-            <input type="text" id="keyBoard" name="keyBoard" required value={profile.keyBoard} onChange={handleChange}/>
-
-            <label htmlFor="headSet">Headset:</label>
-            <input type="text" id="headSet" name="headSet" required value={profile.headSet} onChange={handleChange}/>
-
-            <label htmlFor="monitor">Monitor:</label>
-            <input type="text" id="monitor" name="monitor" required value={profile.monitor} onChange={handleChange}/>
-            
-            <button type="submit" value="Update" onClick={handleUpdate}>Save</button>
-        </form>
+    <div className="profile">
+    <div className="header">
+        <h1>Edit User Profile</h1>
+        <button className="save-btn" onClick={UpdateProfileData}>Save</button>
     </div>
-    );
+
+    {/* Connections section */}
+    {/* <div className="edit-section">
+        <h2>Connections</h2>
+        <div className="edit-field">
+            <label>Twitter:</label>
+            <input
+                type="text"
+                value={twitter}
+                onChange={(e) => setTwitter(e.target.value)}
+            />
+        </div>
+        <div className="edit-field">
+            <label>Instagram:</label>
+            <input
+                type="text"
+                value={instagram}
+                onChange={(e) => setInstagram(e.target.value)}
+            />
+        </div>
+    </div> */}
+
+    {/* Personal details section */}
+    <div className="edit-section">
+        <h2>Personal Details</h2>
+        <div className="edit-field">
+            <label>First Name:</label>
+            <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+            />
+        </div>
+        <div className="edit-field">
+            <label>Last Name:</label>
+            <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+            />
+        </div>
+    </div>
+
+    {/* Peripherals section */}
+    <div className="edit-section">
+        <h2>Peripherals</h2>
+        {/* <div className="edit-field">
+            <label>DPI:</label>
+            <input
+                type="number"
+                value={keyboard}
+                onChange={(e) => setDpi(e.target.value)}
+            />
+        </div> */}
+        <div className="edit-field">
+            <label>Mouse:</label>
+            <input
+                type="text"
+                value={mouse}
+                onChange={(e) => setMouse(e.target.value)}
+            />
+        </div>
+        <div className="edit-field">
+            <label>Mousepad:</label>
+            <input
+                type="text"
+                value={mousePad}
+                onChange={(e) => setMousePad(e.target.value)}
+            />
+        </div>
+        <div className="edit-field">
+            <label>Keyboard:</label>
+            <input
+                type="text"
+                value={keyboard}
+                onChange={(e) => setKeyboard(e.target.value)}
+            />
+        </div>
+        <div className="edit-field">
+            <label>Headset:</label>
+            <input
+                type="text"
+                value={headset}
+                onChange={(e) => setHeadset(e.target.value)}
+            />
+        </div>
+        <div className="edit-field">
+            <label>Monitor:</label>
+            <input
+                type="text"
+                value={monitor}
+                onChange={(e) => setMonitor(e.target.value)}
+            />
+        </div>
+    </div>
+</div>
+);
 }

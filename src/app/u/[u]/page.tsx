@@ -2,7 +2,6 @@
 
 import Spinner from '@/app/Components/Spinner/spinner';
 import { Profile } from '@/app/lib/definitions';
-import { Container} from '@mui/material';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 

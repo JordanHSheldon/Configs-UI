@@ -5,9 +5,8 @@ import { useCookies } from 'next-client-cookies';
 import { useEffect, useState } from 'react';
 import { cred } from '../lib/definitions';
 import { useRouter } from 'next/navigation';
-import { TextField, Button, Box, Typography } from '@mui/material';
-import Link from "next/link";
 import Toast from 'react-hot-toast'
+import "./login.css"
 
 export default function Page() {
   const [username, setUsername] = useState('');
@@ -27,52 +26,34 @@ export default function Page() {
     let cred = (await Login(username, password)).result;
     
     if(cred == "Not found"){
-      Toast.error(cred);
+      Toast.error("User not found");
       return;
     }
 
-    setCookie("user", cred, { maxAge: 60 * 6 * 24 });
-    Toast.success("Logged in succesfully")
-    router.push("/profile");
+    setCookie("user", cred, { maxAge: 60 * 100 * 24 });
+    Toast.success("Logged in succesfully");
+    router.replace('/');
     return;
   };
 
   return (
-    <div>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Login
-        </Typography>
-        <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-          <Box mb={2}>
-            <TextField
-              label="Username"
-              variant="outlined"
-              fullWidth
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </Box>
-          <Box mb={2}>
-            <TextField
-              label="Password"
-              type="password"
-              variant="outlined"
-              fullWidth
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </Box>
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Login
-          </Button>
-        </form>
-        <br></br>
-      <Link href="/register">
-        Do not have an account?
-      </Link>
+    <div className="login-container">
+    <h2>sign in to your account</h2>
+    <form action="">
+      <div className="input-field">
+        <label htmlFor="confirm-password">Username</label>
+        <input type="text" id="username" name="username" placeholder="username" required></input>
       </div>
+      <div className="input-field">
+        <label htmlFor="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password" required></input>
+      </div>
+        <button type="submit" className="create-account-btn">Create Account</button>
+    </form>
+    <div className="sign-in-link">
+        Don't have an account? <a href="/register">sign up</a>
+    </div>
+</div>
   );
 };
 

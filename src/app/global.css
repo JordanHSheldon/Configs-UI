@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  background: radial-gradient(circle, rgba(162, 162, 162, 0.4) 0%, rgba(181, 180, 180, 0.6) 60%, rgba(206, 204, 204, 0.8) 100%);
+}
 .container {
     margin: auto;
     justify-content: center;
@@ -21,17 +24,14 @@
 
 .left {
     flex: 1;
-    background-color: whitesmoke;
 }
 
 .center {
-    flex: 4; /* Adjust this value to make the center column wider */
-    background-color: whitesmoke;
+    flex: 5;
 }
 
 .right {
     flex: 1;
-    background-color: whitesmoke;
 }
 
 .mainPageDiv h1 {
