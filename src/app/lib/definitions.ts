@@ -25,10 +25,20 @@ export type PaginatedUser = {
   lastName: string;
 };
 
+export type Peripherals = {
+  dpi: number
+  mouse: string;
+  mousePad: string;
+  keyBoard: string;
+  headSet: string;
+  monitor: string;
+}
+
 export type Profile = {
   id: string;
   userName: string;
   firstName: string;
+  email: string;
   dpi: number
   lastName: string;
   mouse: string;
