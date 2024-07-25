@@ -39,14 +39,14 @@ export default function Page() {
   return (
     <div className="login-container">
     <h2>sign in to your account</h2>
-    <form action="">
+    <form action="submit" onSubmit={handleSubmit}>
       <div className="input-field">
         <label htmlFor="confirm-password">Username</label>
-        <input type="text" id="username" name="username" placeholder="username" required></input>
+        <input type="text" id="username" name="username" placeholder="username" onChange={(e) => setUsername(e.target.value)} required></input>
       </div>
       <div className="input-field">
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Password" required></input>
+        <input type="password" id="password" name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required></input>
       </div>
         <button type="submit" className="create-account-btn">sign in</button>
     </form>
