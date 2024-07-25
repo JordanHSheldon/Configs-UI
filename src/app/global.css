@@ -34,25 +34,47 @@ body{
     flex: 1;
 }
 
-.mainPageDiv h1 {
-    padding-top: 2em;
-    font-size: 80px;
-    font-family: monospace;   
-    font-weight: 800; 
-    align-items: left;
-}
+.main {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .description {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 
-.mainPageDiv h2 {
-    padding-top: 10em;
-    font-size: 35px;
-    font-family: monospace;
-    white-space: nowrap;
-    font-weight: 800;
-    align-items: left;
-    justify-content: left;
-}
+.details {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .cta {
+    margin-top: 2rem;
+  }
+  
+  .ctaButton {
+    padding: 1rem 2rem;
+    background-color: #042d5c;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ctaButton:hover {
+    background-color: #013d7c;
+  }
 
-.mainPageDiv {
-    display: flex;
-    align-items: left;
-}
+  hr {
+    margin: 2rem;
+    padding: 10px;
+    width:auto;
+  }

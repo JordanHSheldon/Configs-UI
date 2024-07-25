@@ -48,7 +48,7 @@ export default function Page() {
         <label htmlFor="password">Password</label>
         <input type="password" id="password" name="password" placeholder="Password" required></input>
       </div>
-        <button type="submit" className="create-account-btn">Create Account</button>
+        <button type="submit" className="create-account-btn">sign in</button>
     </form>
     <div className="sign-in-link">
         Don't have an account? <a href="/register">sign up</a>
