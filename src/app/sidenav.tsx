@@ -10,7 +10,7 @@ const SideNav = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <a href='/'><img style={{"border-radius":"30px"}} src="https://png.pngtree.com/png-clipart/20190619/original/pngtree-vector-house-icon-png-image_4013530.jpg" alt="Logo"></img></a>
+        <a href='/'><img src="https://png.pngtree.com/png-clipart/20190619/original/pngtree-vector-house-icon-png-image_4013530.jpg" alt="Logo"></img></a>
       </div>
       <div className="navbar-right">
         <form className="search-form">
@@ -18,7 +18,7 @@ const SideNav = () => {
         </form>
         {user ? 
           <div className="navbar-right">
-            <a href='/profile'><img style={{"width":"40px", "border-radius":"30px"}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb51ZwKCKqU4ZrB9cfaUNclbeRiC-V-KZsfQ&s" alt="Logo"></img></a>
+            <a href='/profile'><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb51ZwKCKqU4ZrB9cfaUNclbeRiC-V-KZsfQ&s" alt="Logo"></img></a>
           </div>
           : 
           <a href="/login" className="login-btn">Login / Signup</a>
