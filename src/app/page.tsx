@@ -11,7 +11,7 @@ export default function Page() {
         <meta name="description" content="Welcome to configs.cc - Home of Player Configurations" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      
       <main className={"main"}>
         <h1 className={"title"}>configs.cc</h1>
         <p className={"description"}>The ultimate destination for player configurations.</p>
