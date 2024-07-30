@@ -1,48 +1,43 @@
 "use client"
 
-import Spinner from '@/app/Components/Spinner/spinner';
-import { Profile } from '@/app/lib/definitions';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import { Profile } from "../../lib/definitions"
+import { useCookies } from 'next-client-cookies';
+import './profile.css'
+import Spinner from "../../Components/Spinner/spinner";
 
-const UserProfile = () => {
+export default function Page() {
+  const cookieStore = useCookies();
+  const user = cookieStore.get('user');
   const [profile, setProfile] = useState<Profile | null>(null)
-  const [isLoading, setLoading] = useState(true);
-  const pathname = usePathname();
-
+  const [isLoading, setLoading] = useState(true)
+  
   useEffect(() => {
-    if (pathname) {
-      const pathItems = pathname.split("/");
-      GetProfileData(pathItems[pathItems.length - 1]);
+    if (user) {
+      GetProfileData(user);
     } else {
       setLoading(false);
     }
-  }, [pathname]);
+  }, [user]);
  
   if (isLoading) return <Spinner />
-  if (!profile) return <p>No profile data</p>
+  if (!profile) return <p>No profile data, check back later</p>
 
-  async function GetProfileData(username: string): Promise<void> {
+  async function GetProfileData(token: string): Promise<void> {
     setLoading(true);
     try {
-      let request = {
-        username: username
-      }
-      
-      const response = await fetch(`${process.env.url}/Data/GetDataByUserName`, {
+      const response = await fetch(`${process.env.url}/Data/GetUserProfile`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
         },
-        body: JSON.stringify(request)
       });
 
-      // Ensure the response is OK
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
 
-      // Parse the response body only once
       const profileData: Profile = await response.json();
       setProfile(profileData);
     } catch (error) {
@@ -53,10 +48,63 @@ const UserProfile = () => {
   }
 
   return (
-    <main>
-        <h1>{profile.userName}: {profile.firstName} {profile.lastName}</h1>
-    </main>
-  );
-};
+    <>
+      <div className="profile">
+          <div className="profile-info">
+              <div className="profile-picture">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb51ZwKCKqU4ZrB9cfaUNclbeRiC-V-KZsfQ&s" alt="Profile Picture" />
+                  <div className="connections">
+                      {/* <a href="https://twitter.com/username" target="_blank">Twitter</a>
+                      <a href="https://instagram.com/username" target="_blank">Instagram</a> */}
+                  </div>
+              </div>
+              <div className="user-details">
+                <h2>{profile?.userName}</h2>
+                <p>{profile?.firstName} {profile?.lastName}</p>
+              </div>
+          </div>
 
-export default UserProfile;
+          <br />
+          <hr />
+          <br />
+
+          {/* Perihperals section */}
+          <div className="additional-section">
+              <h1>Peripherals</h1>
+              <div className="additional-info">
+                  <div className="additional-info-item">
+                      <span className="info-label">Mouse:</span>
+                      <span className="info-value">{profile?.mouse}</span>
+                  </div>
+                  <div className="additional-info-item">
+                      <span className="info-label">MousePad:</span>
+                      <span className="info-value">{profile?.mousePad}</span>
+                  </div>
+                  <div className="additional-info-item">
+                      <span className="info-label">Keyboard:</span>
+                      <span className="info-value">{profile?.keyBoard}</span>
+                  </div>
+                  <div className="additional-info-item">
+                      <span className="info-label">Headset:</span>
+                      <span className="info-value">{profile?.headSet}</span>
+                  </div>
+                  <div className="additional-info-item">
+                      <span className="info-label">Monitor:</span>
+                      <span className="info-value">{profile?.monitor}</span>
+                  </div>
+              </div>
+          </div>
+
+          <br />
+          <hr />
+          <br />
+
+          {/* Another section below additional information */}
+          <div className="more-section">
+              
+          </div>
+          <br />
+      </div>
+  </>
+);
+}

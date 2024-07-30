@@ -18,11 +18,21 @@ body {
 
 .navbar-left img {
     height: 40px; /* Adjust height as needed */
+    border-radius: 25px;
 }
 
 .navbar-right {
     display: flex;
     align-items: center;
+    height: 40px;
+}
+
+.navbar-right img {
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    height: 40px;
+    padding-right: .1em;
 }
 
 .search-form {
@@ -36,6 +46,7 @@ body {
     border-radius: 20px;
     margin-right: 5px;
     font-size: 14px;
+    color: black;
 }
 
 .search-form button {
