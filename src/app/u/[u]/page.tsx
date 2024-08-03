@@ -5,33 +5,38 @@ import { Profile } from "../../lib/definitions"
 import { useCookies } from 'next-client-cookies';
 import './profile.css'
 import Spinner from "../../Components/Spinner/spinner";
+import { useParams } from "next/navigation";
+import { json } from "stream/consumers";
 
 export default function Page() {
   const cookieStore = useCookies();
-  const user = cookieStore.get('user');
   const [profile, setProfile] = useState<Profile | null>(null)
   const [isLoading, setLoading] = useState(true)
+  const params = useParams();
   
   useEffect(() => {
-    if (user) {
-      GetProfileData(user);
+    if (params["u"]) {
+      GetProfileData(params["u"]);
     } else {
       setLoading(false);
     }
-  }, [user]);
+  }, []);
  
   if (isLoading) return <Spinner />
   if (!profile) return <p>No profile data, check back later</p>
 
-  async function GetProfileData(token: string): Promise<void> {
+  async function GetProfileData(username: string | string[]): Promise<void> {
     setLoading(true);
+    let data = {
+      Username: username
+    }
     try {
-      const response = await fetch(`${process.env.url}/Data/GetUserProfile`, {
+      const response = await fetch(`${process.env.url}/Data/GetDataByUserName`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token
+          'Content-Type': 'application/json'
         },
+        body: JSON.stringify(data)
       });
 
       if (!response.ok) {
