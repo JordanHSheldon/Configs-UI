@@ -53,7 +53,7 @@ export default function Page() {
     <div className="sign-in-link">
         Don't have an account? <a href="/register">sign up</a>
     </div>
-</div>
+  </div>
   );
 };
 

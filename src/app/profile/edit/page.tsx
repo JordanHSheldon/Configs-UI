@@ -4,7 +4,7 @@ import {useEffect, useState } from "react";
 import { useCookies } from 'next-client-cookies';
 import Spinner from "@/app/Components/Spinner/spinner";
 import { Profile } from "@/app/lib/definitions";
-import './styles.css'
+import './edit.css'
 
 export default function Page() {
     const cookieStore = useCookies();
@@ -42,8 +42,8 @@ export default function Page() {
         }
     }, [profile]);
 
-    if (isLoading) return <Spinner />
-    if (!profile) return <p>No profile data</p>
+    if (isLoading) return <div style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}><Spinner /></div>;
+    if (!profile) return <p style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}>No data, check back later</p>
   
     async function GetProfileData(token: string): Promise<void> {
         setLoading(true);

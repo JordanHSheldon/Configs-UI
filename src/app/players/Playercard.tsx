@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import './players.css';
 import { User } from '../lib/definitions';
 
 const PlayerCard: React.FC<User> = ({userName}) => {

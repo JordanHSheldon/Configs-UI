@@ -1,11 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { Peripheral, User } from "../lib/definitions";
+import { Peripheral } from "../lib/definitions";
 import Grid from "@mui/material/Grid";
 import Spinner from "../Components/Spinner/spinner";
-import Playercard from "./Peripheral";
-
+import PeripheralCard from "./PeripheralCard";
+import './peripherals.css'
 export default function Page() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Peripheral[] | null>(null);
@@ -14,7 +14,8 @@ export default function Page() {
     GetPeripherals();
   }, []);
 
-  if (loading) return <Spinner />;
+  if (loading) return <div style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}><Spinner /></div>;
+  if (!data) return <p style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}>No data, check back later</p>
 
   async function GetPeripherals(): Promise<void> {
     setLoading(true);
@@ -26,36 +27,30 @@ export default function Page() {
         },
       });
 
-      // Ensure the response is OK
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
 
-      // Parse the response body only once
       const profileData: Peripheral[] = await response.json();
-      setData(profileData); // Update state with profile data
+      setData(profileData);
     } catch (error) {
       console.error('Fetch error:', error);
-      setLoading(false); 
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
     }
   }
 
   return (
     <div>
-    <br />
       {data ? (
-        <>
         <Grid container justifyContent={"center"} alignItems="left">
           {data.map((data) => (
             <div style={{"padding":"10px"}}>
-              <Playercard key={data.name} type= {data.type} name={data.name} url={data.url}/>
+              <PeripheralCard key={data.name} type= {data.type} name={data.name} url={data.url}/>
             </div>
           ))}
           <br/>
           </Grid>
-        </>
       ) : (
         <p>No data available.</p>
       )}

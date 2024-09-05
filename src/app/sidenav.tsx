@@ -10,7 +10,7 @@ const SideNav = () => {
     <nav className="navbar">
       <div className="navbar-left">
         <a href='/'><h1>configs</h1></a>
-        <a href='/perihperals'><p>Peripherals</p></a>
+        <a href='/peripherals'><p>Peripherals</p></a>
         <a href='/players'><p>Players</p></a>
       </div>
       <div className="navbar-right">
