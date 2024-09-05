@@ -31,7 +31,6 @@ export default function Page() {
    
     useEffect(() => {
         if (profile) {
-            // Set initial values from profile if it exists
             setFirstName(profile.firstName ?? '');
             setLastName(profile.lastName ?? '');
             setMouse(profile.mouse ?? '');
@@ -106,41 +105,41 @@ export default function Page() {
 
   return (
     <div className="profile">
-    <div className="header">
-        <h1>Edit User Profile</h1>
-        <button className="save-btn" onClick={UpdateProfileData}>Save</button>
-    </div>
-
-    {/* Connections section */}
-    {/* <div className="edit-section">
-        <h2>Connections</h2>
-        <div className="edit-field">
-            <label>Twitter:</label>
-            <input
-                type="text"
-                value={twitter}
-                onChange={(e) => setTwitter(e.target.value)}
-            />
+        <div className="header">
+            <h1>Edit User Profile</h1>
+            <button className="save-btn" onClick={UpdateProfileData}>Save</button>
         </div>
-        <div className="edit-field">
-            <label>Instagram:</label>
-            <input
-                type="text"
-                value={instagram}
-                onChange={(e) => setInstagram(e.target.value)}
-            />
-        </div>
-    </div> */}
 
-    {/* Personal details section */}
-    <div className="edit-section">
-        <h2>Personal Details</h2>
-        <div className="edit-field">
-            <label>First Name:</label>
-            <input
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+        {/* Connections section */}
+        {/* <div className="edit-section">
+            <h2>Connections</h2>
+            <div className="edit-field">
+                <label>Twitter:</label>
+                <input
+                    type="text"
+                    value={twitter}
+                    onChange={(e) => setTwitter(e.target.value)}
+                />
+            </div>
+            <div className="edit-field">
+                <label>Instagram:</label>
+                <input
+                    type="text"
+                    value={instagram}
+                    onChange={(e) => setInstagram(e.target.value)}
+                />
+            </div>
+        </div> */}
+
+        {/* Personal details section */}
+        <div className="edit-section">
+            <h2>Personal Details</h2>
+            <div className="edit-field">
+                <label>First Name:</label>
+                <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
             />
         </div>
         <div className="edit-field">
@@ -204,7 +203,7 @@ export default function Page() {
                 onChange={(e) => setMonitor(e.target.value)}
             />
         </div>
+        </div>
     </div>
-</div>
-);
+    );
 }

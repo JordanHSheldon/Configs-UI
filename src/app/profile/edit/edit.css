@@ -3,13 +3,14 @@
     max-width: 800px;
     margin: 20px auto;
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 10em;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background-color: rgb(27, 24, 24);
 }
 
 .header {
+    color: rgb(198, 196, 196);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,6 +18,7 @@
 }
 
 .header h1 {
+    color: rgb(198, 196, 196);
     font-size: 24px;
     color: #333;
     margin: 0;
@@ -43,6 +45,7 @@
 }
 
 .edit-field {
+    color: rgb(198, 196, 196);
     display: flex;
     margin-bottom: 10px;
     align-items: center;

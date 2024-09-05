@@ -3,13 +3,14 @@
     max-width: 800px;
     margin: 20px auto;
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 10em;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background-color: rgb(27, 24, 24);
 }
 
 .header {
+    color: rgb(198, 196, 196);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,6 +30,7 @@
 }
 
 .profile-info {
+    color: rgb(198, 196, 196);
     display: flex;
     flex-wrap: wrap;
 }
@@ -56,6 +58,7 @@
 }
 
 .user-details {
+    color: rgb(198, 196, 196);
     flex: 1;
 }
 
@@ -66,11 +69,10 @@
 }
 
 .user-details p {
-    color: #777;
+    color: rgb(198, 196, 196);
     margin-bottom: 0;
 }
 
 span {
     margin-right: 10px;
 }
-
