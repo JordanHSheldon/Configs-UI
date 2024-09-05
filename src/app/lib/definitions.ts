@@ -34,6 +34,12 @@ export type Peripherals = {
   monitor: string;
 }
 
+export type Peripheral = {
+  type: string;
+  url: string;
+  name: string;
+}
+
 export type Profile = {
   id: string;
   userName: string;

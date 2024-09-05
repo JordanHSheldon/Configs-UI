@@ -13,7 +13,7 @@ export default function Page() {
       </Head>
       
       <main className={"main"}>
-        <h1 className={"title"}>configs.cc</h1>
+        <h1 className={"title"}>configs</h1>
         <p className={"description"}>The ultimate destination for player configurations.</p>
 
         <p className={"details"}>
