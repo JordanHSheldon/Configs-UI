@@ -53,14 +53,14 @@ body{
 
 .description {
   color: rgb(198, 196, 196);
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 2rem;
 }
 
 .details {
   color: rgb(198, 196, 196);
   margin-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: 2rem;
 }
 
@@ -69,13 +69,13 @@ body{
 }
 
 .ctaButton {
-  padding: 1rem 2rem;
-  background-color: #042d5c;
+  padding: .5rem .5rem;
+  background-color: #285a92;
   color: color;
-  border-radius: 5px;
+  border-radius: .5em;
   text-decoration: none;
-  font-size: 1.2rem;
-  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  transition: background-color 0.5s ease;
 }
 
 .ctaButton:hover {
