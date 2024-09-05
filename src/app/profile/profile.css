@@ -1,15 +1,7 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-}
-
 .profile {
     width: 80%; /* Adjust width as needed */
     max-width: 800px; /* Set maximum width */
     margin: 20px auto;
-    background-color: #fff;
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 8px;
@@ -20,12 +12,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px; /* Reduced margin */
+    margin-bottom: 10px;
 }
 
 .header h1 {
     font-size: 24px;
-    color: #333;
+    color: rgb(198, 196, 196);
     margin: 0;
 }
 
@@ -41,7 +33,7 @@ body {
 }
 
 .profile-picture {
-    flex: 0 0 200px; /* Adjust width of profile picture */
+    flex: 0 0 200px;
     margin-right: 20px;
 }
 
@@ -58,7 +50,7 @@ body {
 .connections a {
     display: block;
     text-decoration: none;
-    color: #555;
+    color: rgb(198, 196, 196);
     margin-bottom: 5px;
 }
 
@@ -68,8 +60,8 @@ body {
 
 .user-details h2 {
     font-size: 20px;
-    color: #333;
-    margin-bottom: 5px; /* Reduced margin */
+    color: rgb(198, 196, 196);
+    margin-bottom: 5px;
 }
 
 .user-details p {

@@ -3,7 +3,7 @@
     width: 50px;
     height: 50px;
     border: 5px solid rgba(0, 0, 0, 0.1);
-    border-top: 5px solid #3498db;
+    border-top: 5px solid #abb2b7;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }

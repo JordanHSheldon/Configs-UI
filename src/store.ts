@@ -1,6 +1,6 @@
 import { createStore } from 'zustand';
 
-const store = createStore<any>((set) => ({
+const store = createStore<any>(() => ({
     IsUserLoggedIn: false,
 }));
 

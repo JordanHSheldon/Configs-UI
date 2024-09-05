@@ -20,8 +20,8 @@ export default function Page() {
     }
   }, [user]);
  
-  if (isLoading) return <Spinner />
-  if (!profile) return <p>No profile data, check back later</p>
+  if (isLoading) return <div style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}><Spinner /></div>
+  if (!profile) return <p style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}>No profile data, check back later</p>
 
   async function GetProfileData(token: string): Promise<void> {
     setLoading(true);
