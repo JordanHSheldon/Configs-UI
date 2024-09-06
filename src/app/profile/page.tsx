@@ -67,9 +67,7 @@ export default function Page() {
               </div>
           </div>
 
-          <br />
           <hr />
-          <br />
 
           {/* Perihperals section */}
           <div className="additional-section">
@@ -98,9 +96,7 @@ export default function Page() {
               </div>
           </div>
 
-          <br />
           <hr />
-          <br />
 
           {/* Another section below additional information */}
           <div className="more-section">
