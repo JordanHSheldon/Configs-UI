@@ -1,0 +1,49 @@
+.bento-container {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    gap: 10px;
+    width: 80%;
+    height: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.big-box {
+    grid-row: 1;
+}
+
+.small-box-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.small-box {
+    text-align: center;
+}
+h1 {
+    padding: 1rem;
+    text-align: center;
+    font-size: 3rem;
+}
+
+h2 {
+    padding: 1rem;
+    text-align: center;
+}
+
+.bento-button {
+    padding-top: 0;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+button {
+    border-radius: 2rem;
+    width: 6rem;
+    height: 2rem;
+    background-color: black;
+    color: white;
+    align-items: center;
+}

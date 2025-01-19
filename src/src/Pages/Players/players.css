@@ -1,0 +1,46 @@
+.playerspage {
+  padding-top: 10em;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0 2px;
+  margin: 0 16px 16px 16px;
+}
+
+.card {
+  width: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(1, 1, 1, 0.2);
+  font-family: 'Arial', sans-serif;
+}
+  
+.imageContainer {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.detailsContainer {
+  padding: 16px;
+}
+
+.name {
+  font-size: 24px;
+  margin: 0;
+  color: #333;
+}
+
+.details {
+  font-size: 16px;
+  color: #666;
+  margin-top: 8px;
+}
