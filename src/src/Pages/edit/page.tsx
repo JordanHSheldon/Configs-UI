@@ -32,7 +32,7 @@ export default function Edit() {
     async function GetProfileData(token: string): Promise<void> {
         setLoading(true);
         try {
-            const response = await fetch('https://localhost:7191/api/Data/GetUserProfile', {
+            const response = await fetch(import.meta.env.VITE_API_URL+'api/Data/GetUserProfile', {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',

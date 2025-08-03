@@ -12,7 +12,8 @@ export type cred = {
   result: string
 }
 
-export type User = {
+export type Profile = {
+  id: string,
   userName: string,
   mouse: string,
   mousePad: string,
@@ -21,21 +22,10 @@ export type User = {
   monitor: string,
 };
 
-export type PaginatedUser = {
+export type Profiles = {
   username: string;
   firstName: string;
   lastName: string;
-};
-
-export type ProfileType = {
-  id: string;
-  userName: string;
-  dpi: number
-  mouse: string;
-  mousePad: string;
-  keyBoard: string;
-  headSet: string;
-  monitor: string;
 };
 
 export type Peripheral = {

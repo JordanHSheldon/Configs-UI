@@ -1,15 +1,14 @@
 .login-container {
     border-radius: 2rem;
     padding: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 65%;
-    height: 55%;
+    height: 75%;
     text-align: center;
     margin: auto;
 }
 
 .login-container h2 {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
 
 .input-field {
@@ -24,24 +23,23 @@
 
 .input-field input[type="text"],
 .input-field input[type="password"] {
-    width: 30%;
-    padding: 8px;
+    width: 35%;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
 }
 .create-account-btn {
-    background-color: #e0e0e0; /* Light gray */
+    background-color: #e0e0e0;
     color: #333;
     border: none;
     border-radius: 4px;
-    padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.9s ease;
 }
 .create-account-btn:hover,
 .create-account-btn:focus {
-    background-color: #333; /* Dark gray */
+    background-color: #333;
     color: #fff;
 }
 .sign-in-link {

@@ -1,8 +1,8 @@
 import React from 'react';
 import './players.css';
-import { User } from '../../lib/definitions';
+import { Profile } from '../../lib/definitions';
 
-const PlayerCard: React.FC<User> = ({userName}) => {
+const ProfileCard: React.FC<Profile> = ({userName}) => {
   return (
     <div className="card">
       <div className="imageContainer">
@@ -15,4 +15,4 @@ const PlayerCard: React.FC<User> = ({userName}) => {
   );
 };
 
-export default PlayerCard;
+export default ProfileCard;

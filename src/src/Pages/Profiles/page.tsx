@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { User } from "../../lib/definitions";
-import Playercard from "./Playercard";
+import { Profile } from "../../lib/definitions";
+import ProfileCard from "./Profilecard";
 import Spinner from "../../Components/Spinner/spinner";
 import './players.css'
 
 export default function Players() {
   const pagination = 10;
-  const [data, setData] = useState<User[] | null>(null);
+  const [data, setData] = useState<Profile[] | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Players() {
         Limit: limit
       };
 
-      const response = await fetch('https://localhost:7191/api/Data/GetPaginatedUserData', {
+      const response = await fetch(import.meta.env.VITE_API_URL+'api/Data/GetPaginatedUserData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export default function Players() {
         throw new Error('Network response was not ok');
       }
 
-      const profileData: User[] = await response.json();
+      const profileData: Profile[] = await response.json();
       setData(profileData);
     } catch (error) {
       console.error('Fetch error:', error);
@@ -50,8 +50,8 @@ export default function Players() {
     <div className="playerspage">
       {data ? (
         <div>
-          {data.map((user) => (
-              <Playercard key={user.userName} userName={user.userName} mouse={""} mousePad={""} keyBoard={""} headSet={""} monitor={""}/>
+          {data.map((profile) => (
+              <ProfileCard id={profile.id} key={profile.userName} userName={profile.userName} mouse={""} mousePad={""} keyBoard={""} headSet={""} monitor={""}/>
           ))}
           </div>
       ) : (

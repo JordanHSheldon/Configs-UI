@@ -1,4 +1,3 @@
-import React from 'react'
 import BentoBox from '../../Components/BentoBox/BentoBox'
 
 const Home = () => {

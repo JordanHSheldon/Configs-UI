@@ -69,7 +69,7 @@ async function RegisterUser(username: string, password: string, email: string): 
     Email: email
   };
 
-  const response = await fetch('https://localhost:7191/api/User/register', {
+  const response = await fetch(import.meta.env.VITE_API_URL+'api/User/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

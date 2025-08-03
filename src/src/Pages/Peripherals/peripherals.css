@@ -14,14 +14,9 @@
   align-items: center;
 }
 
-.profileImage {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
 .detailsContainer {
-  padding: 16px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .name {
@@ -34,4 +29,15 @@
   font-size: 16px;
   color: #666;
   margin-top: 8px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  outline: 0;
+  cursor: auto;
+}
+
+th {
+  text-align: left;
 }

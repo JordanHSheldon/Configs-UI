@@ -1,50 +1,19 @@
-import { useEffect, useState } from "react";
-import { ProfileType } from "../../lib/definitions";
-import { useCookies } from "react-cookie";
-import Spinner from "../../Components/Spinner/spinner";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserStore } from "../../store";
 import './profile.css'
 
 export default function Profile() {
-  const [profile, setProfile] = useState<ProfileType | null>(null)
-  const [isLoading, setLoading] = useState(true)
-  const [cookies] = useCookies(['user']);
+  const { profile } = useUserStore();
+  const { getUser } = useUserStore();
   const navigate = useNavigate();
-
   useEffect(() => {
-    if (!cookies?.user) {
-      navigate("/");
+    if(profile === undefined){
+      getUser();
     }
-
-    GetProfileData(cookies?.user);
-  }, [cookies, navigate]);
+  }, [getUser,navigate,profile]);
  
-  if (isLoading) return <div style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}><Spinner /></div>
-  if (!profile) return <p style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}>No profile data, check back later</p>
-
-  async function GetProfileData(token: string): Promise<void> {
-    setLoading(true);
-    try {
-      const response = await fetch('https://localhost:7191/api/Data/GetUserProfile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const profileData: ProfileType = await response.json();
-      setProfile(profileData);
-    } catch (error) {
-      console.error('Fetch error:', error);
-    } finally {
-      setLoading(false);
-    }
-  }
+  if (profile === undefined) return <p style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}>No profile data, check back later</p>
 
   async function EditProfileData(): Promise<void> {
     navigate("/edit");

@@ -1,27 +1,18 @@
-"use client";
-import { useCookies } from 'next-client-cookies';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Spinner from "../Components/Spinner/spinner";
+import { useNavigate } from 'react-router-dom';
+import Spinner from '../../Components/Spinner/spinner';
+import { useUserStore } from '../../store';
 
 export default function Page() {
-  const cookieStore = useCookies();
-  const router = useRouter();
+   const navigate = useNavigate();
+   const { logout } = useUserStore();
 
   useEffect(() => {
-    const user = cookieStore.get('user');
-    if (!user) {
-        router.push("/");
-    }
-    else {
-        cookieStore.remove('user');
-        router.push("/");
-    }
-  }, [cookieStore, router]);
+    logout();
+    navigate("/");
+  },[logout, navigate]);
 
   return (
-    <div>
-        <Spinner />
-    </div>
+    <Spinner />
   );
 };
