@@ -1,0 +1,31 @@
+body {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 1px;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 0 ;
+  margin: 0 16px 16px 16px; 
+  margin-top: 0px;
+}
+
+.cellOutside{
+  padding: 10px;
+  flex: 1 1 15%;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+.cellMiddle{
+  margin-top: 0px;
+  padding: 10px;
+  flex: 1 1 60%;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
