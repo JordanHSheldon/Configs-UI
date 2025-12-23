@@ -20,12 +20,14 @@ export type Profile = {
   keyBoard: string,
   headSet: string,
   monitor: string,
+  avatar: string | undefined;
 };
 
 export type Profiles = {
   username: string;
   firstName: string;
   lastName: string;
+  avatar: string | undefined;
 };
 
 export type Peripheral = {

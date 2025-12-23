@@ -1,26 +1,19 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { cred, Profile } from "./lib/definitions";
-import { redirect } from "react-router-dom";
+import { Profile } from "./lib/definitions";
 
 export interface UserStore {
   user: string | undefined;
   profile: Profile | undefined;
   loading: boolean;
   error: string | undefined;
-  login: (username: string, password: string) => void;
   logout: () => void;
   getUser: () => void;
 }
 
-function setCookie(user: string) {
-  document.cookie = `user=${user}; path=/; max-age=${60 * 60 * 24 * 7}`
-}
-
-function getCookie(): string | null {
+function getCookie(): string | undefined {
   const cookies = document.cookie.split('; ')
   const userCookie = cookies.find(row => row.startsWith('user='))
-  
   if (userCookie) {
     const value = userCookie.split('=')[1]
     try {
@@ -30,7 +23,7 @@ function getCookie(): string | null {
     }
   }
 
-  return null
+  return undefined
 }
 
 function deleteUserCookie() {
@@ -39,44 +32,10 @@ function deleteUserCookie() {
 
 export const useUserStore = create(
     devtools<UserStore>((set) => ({
-      user: getCookie() ?? undefined,
+      user: getCookie(),
       profile: undefined,
       loading: false,
       error: undefined,
-      login: async (email, password) => {
-          set({ loading: true, error: undefined });
-          try {
-            const login_response = await fetch(import.meta.env.VITE_API_URL+'api/User/Login', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ email, password }),
-            });
-            
-            if (!login_response.ok) {
-              throw new Error('Invalid username or password');
-            }
-      
-            const token: cred = await login_response.json();
-            if(token.result === "Not Found") {
-              throw new Error("User could not be found.");
-            }
-
-            setCookie(token.result);
-            set({ loading: false, error: undefined, user: token.result});
-            
-            const state = useUserStore.getState();
-            state.getUser();
-            redirect("/");
-          } catch (error) {
-              console.log(error)
-            set({
-              user: undefined,
-              loading: false,
-            });
-          }
-      },
       logout: () => {
         deleteUserCookie();
         set({
@@ -88,7 +47,11 @@ export const useUserStore = create(
         set({ loading: true, error: undefined });
         try {
           const state = useUserStore.getState();
-          const user_response = await fetch(import.meta.env.VITE_API_URL+'api/Data/GetUserProfile', {
+          if(!state.user){
+            return;
+          }
+          
+          const user_response = await fetch(import.meta.env.VITE_API_URL+'api/Profile/GetUserProfile', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -96,8 +59,9 @@ export const useUserStore = create(
             }
           });
       
-          if (!user_response.ok) {
-            throw new Error('Unknown User');
+          if(!user_response.ok){
+            console.error('response was not okay')
+            return;
           }
       
           const data: Profile = await user_response.json();

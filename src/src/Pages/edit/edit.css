@@ -1,9 +1,6 @@
 .edit-profile {
-    width: 80%;
-    max-width: 800px;
-    margin: 20px auto;
+    width: 100%;
     border: 1px solid #ccc;
-    padding: 10em;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background-color: rgb(27, 24, 24);
@@ -19,31 +16,10 @@
     cursor: pointer;
 }
 
-.edit-section {
-    margin-top: 20px;
-}
-
 .edit-field {
     color: rgb(198, 196, 196);
     display: flex;
-    margin-bottom: 10px;
     align-items: center;
-}
-
-.edit-field label {
-    width: 150px;
     font-weight: bold;
     color: white;
-    margin-right: 10px;
-}
-
-.edit-field select {
-    width: 20rem;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.edit-field option {
-    font-weight: bold;
-    margin-right: 10px;
 }

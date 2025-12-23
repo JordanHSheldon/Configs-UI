@@ -1,7 +1,6 @@
 .card {
   width: 200px;
-  border: 1px solid #b8a9a9;
-  border-radius: 10px;
+  border-radius: .5rem;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(1, 1, 1, 0.2);
   font-family: 'Arial', sans-serif;
@@ -22,7 +21,7 @@
 .name {
   font-size: 24px;
   margin: 0;
-  color: #333;
+  color: #4f46e5;
 }
 
 .details {
@@ -33,11 +32,15 @@
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: whitesmoke;
   outline: 0;
   cursor: auto;
 }
 
 th {
   text-align: left;
+}
+
+p {
+  color: white;
 }

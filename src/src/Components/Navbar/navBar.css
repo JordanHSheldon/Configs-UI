@@ -1,61 +1,127 @@
+/* Global safe reset */
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  box-sizing: border-box; /* keep padding, avoid layout collapse */
 }
 
+/* NAVBAR WRAPPER */
 .navbar {
-    position: sticky !important;
-    top: 0;
-    width: 100% !important;
+  width: 100%;
+  display: block;
+  flex-shrink: 0; /* prevents the navbar from collapsing inside flex layout */
 }
 
+/* NAVBAR INNER CONTENT */
 .navbar-content {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    margin: 0 auto;
-    border: solid;
-    background-color: black;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgb(27, 24, 24);
 }
 
+/* LEFT SIDE OF NAVBAR */
 .navbar-left {
-    display: flex;
-    align-items: center;
-    float: left;
-    margin-left: 0;
+  display: flex;
+  align-items: center;
+  /* float removed – never float inside flex */
 }
 
+/* RIGHT SIDE (pushes to right automatically) */
 .navbar-right {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  text-align: center;
 }
 
+/* BRAND / LOGO */
 .logo {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-}   
-
-.nav-links {
-    list-style: none;
-    display: flex;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.nav-links li {
-    color: white;
-    margin-left: 1rem;
-    padding: 0rem;
+/* BASE NAV LINK LIST (shared rules) */
+.nav-links,
+.nav-links-authenticated,
+.nav-links-unauthenticated {
+  list-style: none;
+  display: flex;
+  padding: 0; /* safe */
+  margin: 0; /* safe */
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
+/* SPECIAL BACKGROUND FOR UNAUTH LIST */
+.nav-links-unauthenticated {
+  background-color: #4f46e5;
+  justify-content: center;
+  border-radius: 0.3rem;
+  color: white;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
-.nav-links a:hover {
-    text-decoration: underline;
-    transition: .1s;
+/* LIST ITEMS */
+li {
+  color: white;
+  margin-left: 1rem;
+  padding: 0;
+  text-align: center;
+}
+
+/* LINKS */
+a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+a:hover {
+  text-decoration: underline;
+  transition: 0.1s;
+}
+
+img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  margin:0;
+  padding: 0;
+}
+
+.profile-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Menu hidden by default */
+.profile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #222;
+  border-radius: 8px;
+  box-shadow: .5rem rgba(0,0,0,0.15);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 2rem;
+  display: none;
+  z-index: 1000;
+}
+
+/* Show menu on hover of wrapper OR menu */
+.profile-wrapper:hover .profile-menu {
+  display: block;
+}
+
+/* Menu items */
+.profile-menu li {
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.profile-menu li:hover {
+  background: #222;
 }

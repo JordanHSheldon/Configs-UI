@@ -4,7 +4,7 @@ echo "building app..."
 npm run build
 
 echo "copying files to server..."
-scp -r dist/* jsheldon@192.168.40.93:/var/www/192.168.40.93
+scp -r dist/* jordan@192.168.2.247:/var/www/configs-ui
 
 echo "application deployed successfully!"
 echo "starting server..."

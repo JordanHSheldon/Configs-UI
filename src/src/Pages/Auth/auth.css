@@ -1,0 +1,45 @@
+.container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 260px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.login-button img {
+  width: 24px;
+  height: 24px;
+  filter: invert(100%);
+}
+
+/* Discord button */
+.discord {
+  background: #5865F2;
+}
+
+.discord:hover {
+  background: #4752C4;
+}
+
+/* Steam button */
+.steam {
+  background: #171a21;
+}
+
+.steam:hover {
+  background: #0d0f14;
+}

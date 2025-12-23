@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Deploy scripts
+*.sh
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

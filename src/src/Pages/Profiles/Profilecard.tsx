@@ -2,11 +2,11 @@ import React from 'react';
 import './players.css';
 import { Profile } from '../../lib/definitions';
 
-const ProfileCard: React.FC<Profile> = ({userName}) => {
+const ProfileCard: React.FC<Profile> = ({userName, avatar}) => {
   return (
-    <div className="card">
+    <div className="player-card">
       <div className="imageContainer">
-        <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb51ZwKCKqU4ZrB9cfaUNclbeRiC-V-KZsfQ&s"} alt={`${userName}'s profile picture`} className={"profileImage"} />
+        <img src={avatar} alt={`${userName}'s profile picture`} className={"profileImage"} />
       </div>
       <div className={"detailsContainer"}>
         <h2 className={"name"}><a href={"/u/"+userName}>{userName}</a></h2>

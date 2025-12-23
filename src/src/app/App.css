@@ -1,31 +1,28 @@
-body {
-  font-family: "Noto Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 1px;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .container {
+  flex: 1;
   display: flex;
-  flex-wrap: nowrap;
-  padding: 0 ;
-  margin: 0 16px 16px 16px; 
-  margin-top: 0px;
+  flex-direction: row;
+  min-height: 0;
 }
 
-.cellOutside{
-  padding: 10px;
-  flex: 1 1 15%;
-  word-wrap: break-word;
-  box-sizing: border-box;
+.cell-outside {
+  flex: 20%;
+  height: 100%;
 }
 
-.cellMiddle{
-  margin-top: 0px;
-  padding: 10px;
-  flex: 1 1 60%;
-  word-wrap: break-word;
-  box-sizing: border-box;
+.cell-middle {
+  flex: 60%;
+  height: 100%;
+}
+
+.footer {
+  background: #222;
 }

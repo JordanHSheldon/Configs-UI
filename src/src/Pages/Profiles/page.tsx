@@ -3,6 +3,7 @@ import { Profile } from "../../lib/definitions";
 import ProfileCard from "./Profilecard";
 import Spinner from "../../Components/Spinner/spinner";
 import './players.css'
+import NoDataFound from "../../Components/NoData/NoDataFound";
 
 export default function Players() {
   const pagination = 10;
@@ -14,7 +15,7 @@ export default function Players() {
   }, [pagination]);
 
   if (loading) return <div><Spinner /></div>;
-  if (!data) return <p>No data, check back later</p>
+  if (!data) return <NoDataFound />
 
   async function GetPaginatedUsers(offset: number, limit: number): Promise<void> {
     setLoading(true);
@@ -24,7 +25,7 @@ export default function Players() {
         Limit: limit
       };
 
-      const response = await fetch(import.meta.env.VITE_API_URL+'api/Data/GetPaginatedUserData', {
+      const response = await fetch(import.meta.env.VITE_API_URL+'api/Profile/GetUserProfiles', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,16 +48,20 @@ export default function Players() {
   }
 
   return (
-    <div className="playerspage">
-      {data ? (
-        <div>
+    <div className="players-page">
+        <div className="players-flex-Box">
           {data.map((profile) => (
-              <ProfileCard id={profile.id} key={profile.userName} userName={profile.userName} mouse={""} mousePad={""} keyBoard={""} headSet={""} monitor={""}/>
+              <ProfileCard  id={profile.id}
+                            key={profile.userName}
+                            userName={profile.userName} 
+                            mouse={""} 
+                            mousePad={""} 
+                            keyBoard={""}
+                            headSet={""}
+                            monitor={""}
+                            avatar={profile.avatar} />
           ))}
           </div>
-      ) : (
-        <p>No data available.</p>
-      )}
     </div>
   );
 }

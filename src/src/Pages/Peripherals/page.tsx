@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Peripheral } from "../../lib/definitions";
 import Spinner from "../../Components/Spinner/spinner";
 import './peripherals.css'
+import NoDataFound from "../../Components/NoData/NoDataFound";
 
 export default function Peripherals() {
   const [loading, setLoading] = useState(false);
@@ -17,12 +18,12 @@ export default function Peripherals() {
   });
 
   if (loading) return <div style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}><Spinner /></div>;
-  if (!data) return <p style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}>No data, check back later</p>
+  if (!data) return <NoDataFound />
 
   async function GetPeripherals(): Promise<void> {
     setLoading(true);
     try {
-      const response = await fetch(import.meta.env.VITE_API_URL+'api/Data/GetPeripherals', {
+      const response = await fetch(import.meta.env.VITE_API_URL+'api/Profile/GetPeripherals', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,7 +43,6 @@ export default function Peripherals() {
     }
   }
 
-
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFilters((prevFilters) => ({
@@ -51,7 +51,7 @@ export default function Peripherals() {
     }));
   };
 
-  const filteredData = data.filter((peripheral) => {
+  const filteredData = data?.filter((peripheral) => {
     return (
       peripheral.name.toLowerCase().includes(filters.name.toLowerCase()) &&
       peripheral.type.toLowerCase().includes(filters.type.toLowerCase())
@@ -60,8 +60,6 @@ export default function Peripherals() {
 
   return (
     <div>
-      {/* Filter Inputs */}
-      <div>
       <label htmlFor="dropdown">Peripheral Name:</label>
         <input
           type="text"
@@ -75,34 +73,25 @@ export default function Peripherals() {
           <option value="">All</option>
           <option value="Keyboard">Keyboard</option>
           <option value="Mouse">Mouse</option>
+          <option value="Mousepad">Mouse</option>
           <option value="Monitor">Monitor</option>
-          <option value="Printer">Printer</option>
-          <option value="Speaker">Speaker</option>
         </select>
-      </div>
 
-      <hr />
-      {/* Table */}
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <table>
         <thead>
           <tr>
-            <th>Type</th>
-            <th>Name</th>
+            <th className="name">Type</th>
+            <th className="name">Name</th>
           </tr>
         </thead>
         <tbody>
-          {filteredData.length > 0 ? (
-            filteredData.map((peripheral) => (
-              <tr key={peripheral.id}>
-                <td>{peripheral.type}</td>
-                <td><a target="_blank" href={peripheral.url}>{peripheral.name}</a></td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={4}>No data available</td>
+        {filteredData.map((peripheral) => (
+            <tr key={peripheral.id}>
+              <td><p>{peripheral.type}</p></td>
+              <td><a target="_blank" href={peripheral.url}>{peripheral.name}</a></td>
             </tr>
-          )}
+          ))
+        }
         </tbody>
       </table>
     </div>

@@ -2,16 +2,9 @@ import "./footer.css";
 
 const Footer = () => {
   return (
-    <div className='footer'>
-        {/* <table>
-        <thead>
-            <tr>
-                <th><a href="/">Configs</a></th>
-                <th><a href="https://github.com/jordanhsheldon/EC-Dashboard">About</a></th>
-            </tr>
-        </thead>
-    </table> */}
-    </div>
+    <footer className='footer'>
+      <span><p>Direct any issues to the: <a target="_blank" href="https://github.com/JordanHSheldon/Configs-UI/issues">dev team</a></p></span>
+    </footer>
   )
 }
 

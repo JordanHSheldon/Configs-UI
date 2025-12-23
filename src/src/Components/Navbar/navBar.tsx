@@ -8,12 +8,6 @@ const NavBar = () => {
   const navigate = useNavigate();
   useEffect(() => {
   }, [profile,navigate]);
-
-  // const redirectYes = (x: string = "") => {
-  //   console.log(x);
-  //   navigate("/profile")
-  // }
-
   return (
     <div className="navbar">
         <div className="navbar-content">
@@ -25,14 +19,21 @@ const NavBar = () => {
               </ul>
             </div>
             <div className="navbar-right">
-                { profile !== undefined ? 
-                  <ul className="nav-links">
-                    <li onClick={()=>navigate("/profile")}>{profile?.userName}</li>
-                    <li onClick={()=>navigate("/logout")}>Logout</li>
+                { profile ? 
+                  <ul className="nav-links-authenticated">
+                    <div className="profile-wrapper">
+                      <img onClick={()=>navigate("/profile")} src={profile.avatar}></img>
+
+                      <ul className="profile-menu">
+                        <li onClick={() => navigate("/logout")}>Logout</li>
+                      </ul>
+                    </div>
                   </ul>
                   : 
-                  <ul className="nav-links">
-                    <li><a href="/login">Login</a></li>
+                  <ul className="nav-links-unauthenticated">
+                    <span>
+                      <a href={"/auth"}>Login</a>
+                    </span>
                   </ul>
                 }
             </div>

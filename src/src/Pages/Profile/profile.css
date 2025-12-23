@@ -1,31 +1,57 @@
 .profile {
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    background-color: rgb(27, 24, 24);
+  width: 100%;
+  background-color: rgb(27, 24, 24);
+  min-width: 100%;
 }
 
 .edit-btn {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-}
-
-.profile div {
-    margin: auto;
-    padding-top: 10px;
-}
-
-.profile span,h1 {
-    color: white;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
 }
 
 .profile img {
-    width: 100%;
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  width: 100%;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
 
+tr {
+  align-content: left;
+  text-align: left;
+}
+
+.tabs {
+  justify-content: center;
+  display: flex;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  border-bottom: .2rem solid transparent;
+  transition: 0.3s;
+}
+
+.tab:hover {
+  color: #4f46e5;
+}
+
+.tab.active {
+  border-bottom-color: #4f46e5;
+  color: #4f46e5;
+}
+
+.tab-content {
+  display: none;
+  padding: 1rem 0;
+}
+
+.tab-content.active {
+  display: block;
+}

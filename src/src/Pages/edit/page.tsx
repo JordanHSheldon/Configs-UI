@@ -1,5 +1,5 @@
 import {useEffect, useState } from "react";
-import { Peripheral, ProfileType } from "../../lib/definitions";
+import { Peripheral, Profile } from "../../lib/definitions";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../../Components/Spinner/spinner";
@@ -9,7 +9,7 @@ export default function Edit() {
     const navigate = useNavigate();
     const [cookies] = useCookies(['user']);
     const [peripherals, setPeripherals] = useState<Peripheral[] | null>(null);
-    const [profile, setProfile] = useState<ProfileType | null>(null);
+    const [profile, setProfile] = useState<Profile | null>(null);
     const [mouse, setMouse] = useState(profile?.mouse ?? "");
     const [mousePad, setMousePad] = useState(profile?.mousePad ?? "");
     const [keyboard, setKeyboard] = useState(profile?.keyBoard ?? "");
@@ -24,15 +24,17 @@ export default function Edit() {
         
         GetPeripherals();
         GetProfileData(cookies?.user);
+
+        console.log(profile)
     }, [cookies, navigate]);
 
     if (isLoading) return <div><Spinner /></div>;
-    if (!profile) return <p>No data, check back later</p>
+    if (!profile) return <p>No data, check back later </p>
   
     async function GetProfileData(token: string): Promise<void> {
         setLoading(true);
         try {
-            const response = await fetch(import.meta.env.VITE_API_URL+'api/Data/GetUserProfile', {
+            const response = await fetch('/api/Profile/GetUserProfile', {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
@@ -44,19 +46,19 @@ export default function Edit() {
                 throw new Error('Network response was not ok');
             }
 
-            const profileData: ProfileType = await response.json();
+            const profileData: Profile = await response.json();
             setProfile(profileData);
         } catch (error) {
-        console.error('Fetch error:', error);
+            console.error('Fetch error:', error);
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     }
 
     async function GetPeripherals(): Promise<void> {
         setLoading(true);
         try {
-            const response = await fetch('https://localhost:7191/api/Data/GetPeripherals', {
+            const response = await fetch('/api/Profile/GetPeripherals', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,11 +66,12 @@ export default function Edit() {
             });
 
             if (!response.ok) {
-            throw new Error('Network response was not ok');
+                throw new Error('Network response was not ok');
             }
 
             const peripheralList: Peripheral[] = await response.json();
             setPeripherals(peripheralList);
+            console.log(peripheralList);
         } catch (error) {
             console.error('Fetch error:', error);
         } finally {
@@ -85,7 +88,7 @@ export default function Edit() {
         data.push(peripherals?.find(p => p.name === headset)?.id ?? 0);
         data.push(peripherals?.find(p => p.name === monitor)?.id ?? 0);
         try {
-            const response = await fetch('https://localhost:7191/api/Data/UpdateUserPeripherals', {
+            const response = await fetch(import.meta.env.VITE_API_URL+'api/Profile/UpdateUserPeripherals', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
