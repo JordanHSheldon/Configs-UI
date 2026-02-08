@@ -118,10 +118,14 @@ img {
 
 /* Menu items */
 .profile-menu li {
-  padding: 10px 14px;
+  padding: 0;
   cursor: pointer;
 }
 
 .profile-menu li:hover {
   background: #222;
+}
+
+li {
+  cursor: pointer;
 }

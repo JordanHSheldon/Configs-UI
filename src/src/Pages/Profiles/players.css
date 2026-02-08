@@ -20,30 +20,19 @@
 }
 
 .player-card {
-  width: 25%;
+  width: 10rem;
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(1, 1, 1, 0.2);
   font-family: 'Arial', sans-serif;
-  justify-content: center;
-  align-items: center;
 }
   
 .imageContainer {
-  padding: .1rem;
   display: flex;
 }
 
 .profileImage {
-  width: 50%;
-  height: auto;
-  border-radius: 0.5rem;
-  margin:0;
-  padding: 0;
-}
-
-.detailsContainer {
-  justify-content: center;
-  width: 80%;
-  padding: .1rem;
+  width: 75%;
+  height: 75%;
+  border-radius: 3rem;
 }

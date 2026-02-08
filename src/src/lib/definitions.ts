@@ -14,13 +14,11 @@ export type cred = {
 
 export type Profile = {
   id: string,
-  userName: string,
-  mouse: string,
-  mousePad: string,
-  keyBoard: string,
-  headSet: string,
-  monitor: string,
+  username: string,
   avatar: string | undefined;
+  mouseId: number,
+  mousepadId: number,
+  keyboardId: number,
 };
 
 export type Profiles = {

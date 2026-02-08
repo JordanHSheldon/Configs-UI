@@ -44,3 +44,15 @@ th {
 p {
   color: white;
 }
+
+.tabs {
+  justify-content: center;
+  display: flex;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  color: white;
+  padding: .5rem;
+}

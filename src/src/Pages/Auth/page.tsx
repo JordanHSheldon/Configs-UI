@@ -17,16 +17,18 @@ export default function Auth() {
     return (
         <div className="container">
             <h1>Login</h1>
-
-            <a className="login-button discord" href={import.meta.env.VITE_API_URL+"api/user/DiscordLogin"}>
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/discord.svg" alt="Discord" />
-            Login with Discord
-            </a>
-
-            <a className="login-button steam" href={import.meta.env.VITE_API_URL+"api/user/SteamLogin"}>
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/steam.svg" alt="Steam" />
-            Login with Steam
-            </a>
+            <div>
+                <a className="login-button discord" href={import.meta.env.VITE_API_URL+"api/user/DiscordLogin"}>
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/discord.svg" alt="Discord" />
+                Login with Discord
+                </a>
+            </div>
+            <div>
+                <a className="login-button steam" href={import.meta.env.VITE_API_URL+"api/user/SteamLogin"}>
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/steam.svg" alt="Steam" />
+                Login with Steam
+                </a>
+            </div>
         </div>
     );
 }

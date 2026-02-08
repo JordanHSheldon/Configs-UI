@@ -52,13 +52,11 @@ export default function Players() {
         <div className="players-flex-Box">
           {data.map((profile) => (
               <ProfileCard  id={profile.id}
-                            key={profile.userName}
-                            userName={profile.userName} 
-                            mouse={""} 
-                            mousePad={""} 
-                            keyBoard={""}
-                            headSet={""}
-                            monitor={""}
+                            key={profile.username}
+                            username={profile.username} 
+                            mouseId={profile.mouseId} 
+                            mousepadId={profile.mousepadId} 
+                            keyboardId={profile.keyboardId}
                             avatar={profile.avatar} />
           ))}
           </div>

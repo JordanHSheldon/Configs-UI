@@ -6,6 +6,10 @@
   min-width: 0;
 }
 
+a button {
+  cursor: pointer;
+}
+
 .container {
   flex: 1;
   display: flex;
@@ -21,6 +25,7 @@
 .cell-middle {
   flex: 60%;
   height: 100%;
+  overflow: auto;
 }
 
 .footer {

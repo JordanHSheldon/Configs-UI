@@ -17,7 +17,7 @@ export default function Peripherals() {
     type: '',
   });
 
-  if (loading) return <div style={{'color': 'rgb(198, 196, 196)','padding':'10em'}}><Spinner /></div>;
+  if (loading) return <Spinner />
   if (!data) return <NoDataFound />
 
   async function GetPeripherals(): Promise<void> {
@@ -60,7 +60,8 @@ export default function Peripherals() {
 
   return (
     <div>
-      <label htmlFor="dropdown">Peripheral Name:</label>
+      <div className="filter-items">
+        <label htmlFor="dropdown">Name</label>
         <input
           type="text"
           name="name"
@@ -68,7 +69,7 @@ export default function Peripherals() {
           onChange={handleFilterChange}
           placeholder="search..."
         />
-        <label htmlFor="dropdown">Peripheral Type:</label>
+        <label htmlFor="dropdown">Type</label>
         <select id="dropdown" value={filters.type} onChange={(e) => setFilters({ ...filters, type: e.target.value })}>
           <option value="">All</option>
           <option value="Keyboard">Keyboard</option>
@@ -76,18 +77,16 @@ export default function Peripherals() {
           <option value="Mousepad">Mouse</option>
           <option value="Monitor">Monitor</option>
         </select>
-
+      </div>
       <table>
         <thead>
           <tr>
-            <th className="name">Type</th>
             <th className="name">Name</th>
           </tr>
         </thead>
         <tbody>
         {filteredData.map((peripheral) => (
             <tr key={peripheral.id}>
-              <td><p>{peripheral.type}</p></td>
               <td><a target="_blank" href={peripheral.url}>{peripheral.name}</a></td>
             </tr>
           ))
