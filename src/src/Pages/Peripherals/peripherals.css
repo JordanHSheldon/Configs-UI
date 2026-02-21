@@ -37,8 +37,12 @@ a {
   cursor: auto;
 }
 
-th {
+th, td {
   text-align: left;
+}
+
+td {
+  padding-bottom: .5rem;
 }
 
 p {
@@ -55,4 +59,76 @@ p {
 label {
   color: white;
   padding: .5rem;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.filter-row label {
+  white-space: nowrap;
+}
+
+.filter-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+#peripheral-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 24px;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  width:50%;
+  max-width: 600px;
+  color:white;
+}
+
+#peripheral-type {
+  width: 100%;
+
+  border-radius: 24px;
+  border: 1px solid #333;
+
+  background: #1e1e1e;
+  color: white;
+  font-size: 15px;
+  font-family: inherit;
+
+  appearance: none; /* remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+/* Custom arrow */
+.filter-row::after {
+  content: "▾";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4f46e5;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+/* Hover */
+.filter-row select:hover {
+  border-color: #555;
+}
+
+/* Focus */
+.filter-row select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.2);
 }

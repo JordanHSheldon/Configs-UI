@@ -9,17 +9,17 @@ import Logout from '../Pages/Logout/page';
 import { useEffect } from 'react';
 import { useUserStore } from '../store';
 import Auth from '../Pages/Auth/page';
+import OtherProfile from '../Pages/OtherProfile/page';
 import './App.css'
 
 function App() {
-  const { getProfile } = useUserStore();
-  const { profile } = useUserStore();
-
+  const { initializeAuth } = useUserStore();
   useEffect(() => {
-    if(profile === undefined){
-      getProfile();
-    }
-  },[getProfile,profile]);
+    const load = async () => {
+      await initializeAuth();
+    };
+    load();
+  },[initializeAuth]);
 
   return (
     <div className='app-wrapper'>
@@ -35,6 +35,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/u/*" element={<OtherProfile />} />
                 <Route path="*" element={<Home />} />
               </Routes>
             </div>

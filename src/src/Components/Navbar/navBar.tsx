@@ -1,7 +1,7 @@
 import { useUserStore } from "../../store";
 import { useEffect } from "react";
-import "./navBar.css"
 import { useNavigate } from "react-router-dom";
+import "./navBar.css"
 
 const NavBar = () => {
   const { profile } = useUserStore();
@@ -22,7 +22,7 @@ const NavBar = () => {
                 { profile ? 
                   <ul className="nav-links-authenticated">
                     <div className="profile-wrapper">
-                      <img onClick={()=>navigate("/profile")} src={profile.avatar}></img>
+                      <img onClick={()=>navigate("/profile")} src={profile?.avatar}></img>
 
                       <ul className="profile-menu">
                         <li onClick={() => navigate("/logout")}>Logout</li>

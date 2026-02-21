@@ -8,14 +8,11 @@ export default function Auth() {
     const [cookies] = useCookies(['user']);
 
     useEffect(() => {
-        if (cookies?.user) {
-            navigate("/");
-        }
-        
+        if (cookies?.user) navigate("/");
     }, [cookies, navigate]);
   
     return (
-        <div className="container">
+        <div className="auth-container">
             <h1>Login</h1>
             <div>
                 <a className="login-button discord" href={import.meta.env.VITE_API_URL+"api/user/DiscordLogin"}>

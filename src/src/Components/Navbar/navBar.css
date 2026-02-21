@@ -11,7 +11,6 @@
   flex-shrink: 0; /* prevents the navbar from collapsing inside flex layout */
 }
 
-/* NAVBAR INNER CONTENT */
 .navbar-content {
   display: flex;
   align-items: center;
@@ -19,14 +18,11 @@
   background-color: rgb(27, 24, 24);
 }
 
-/* LEFT SIDE OF NAVBAR */
 .navbar-left {
   display: flex;
   align-items: center;
-  /* float removed – never float inside flex */
 }
 
-/* RIGHT SIDE (pushes to right automatically) */
 .navbar-right {
   display: flex;
   align-items: center;
@@ -34,12 +30,12 @@
   text-align: center;
 }
 
-/* BRAND / LOGO */
 .logo {
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
+  cursor: pointer;
 }
 
 /* BASE NAV LINK LIST (shared rules) */

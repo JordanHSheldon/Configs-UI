@@ -1,5 +1,14 @@
-.container {
+.auth-container {
   text-align: center;
+  justify-content: center;
+}
+
+.auth-container div {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;      
+  justify-content: center;  
 }
 
 h1 {
@@ -26,7 +35,6 @@ h1 {
   filter: invert(100%);
 }
 
-/* Discord button */
 .discord {
   background: #5865F2;
 }
@@ -35,7 +43,6 @@ h1 {
   background: #4752C4;
 }
 
-/* Steam button */
 .steam {
   background: #171a21;
 }

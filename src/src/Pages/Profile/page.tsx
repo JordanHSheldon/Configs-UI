@@ -7,7 +7,7 @@ import Spinner from "../../Components/Spinner/spinner";
 import './profile.css'
 
 export default function Profile() {
-  const { profile } = useUserStore();
+  const { profile,IsLoggedIn } = useUserStore();
   const { updateProfile } = useUserStore();
   const navigate = useNavigate();
   const [peripherals,setPeripherals] = useState<Peripheral[]>()
@@ -15,9 +15,12 @@ export default function Profile() {
   const [tab,setTab] = useState(1);
 
   useEffect(() => {
-    if(!profile) navigate('/');
+    if(!IsLoggedIn){
+      navigate('/');
+      return;
+    } 
     GetPeripherals();
-  }, [navigate,profile,updateProfile]);
+  }, [profile,updateProfile]);
  
   const toggleTab = (tabId: number) => {
     setTab(tabId);
@@ -26,7 +29,7 @@ export default function Profile() {
   async function GetPeripherals(): Promise<void> {
     setLoading(true);
     try {
-      const response = await fetch(import.meta.env.VITE_API_URL+'api/Profile/GetPeripherals', {
+      const response = await fetch(import.meta.env.VITE_API_URL+'api/Peripheral/GetPeripherals', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +61,6 @@ export default function Profile() {
     if(profile) profile.keyboardId = parseInt(e);
   }
 
-  if (profile === undefined) navigate('/');
   if (loading) return <Spinner />;
 
   return (
@@ -66,7 +68,7 @@ export default function Profile() {
       <div className="profile-header">
           <div className="profile-picture">
             <img src={profile?.avatar}></img>
-            <p>{profile?.username}</p>
+            <p>{profile?.userName}</p>
           </div> 
       </div>
       <div>

@@ -3,33 +3,89 @@ import { devtools } from "zustand/middleware";
 import { Profile } from "./lib/definitions";
 
 export interface UserStore {
+  IsLoggedIn: boolean;
   profile: Profile | undefined;
   loading: boolean;
   error: string | undefined;
+  initializeAuth: () => void;
   logout: () => void;
   getProfile: () => void;
   updateProfile: () => void;
 }
 
-function deleteUserCookie() {
-  document.cookie = 'user=; path=/; max-age=0'
-}
-
 export const useUserStore = create(
-    devtools<UserStore>((set) => ({
+    devtools<UserStore>((set,get) => ({
+      IsLoggedIn: false,
       profile: undefined,
       loading: false,
       error: undefined,
-      logout: () => {
-        deleteUserCookie();
-        set({
-          profile: undefined
-        })
-      },
-      getProfile: async () => {
+      initializeAuth: async() => {
         set({ loading: true, error: undefined });
         try {
-          const user_response = await fetch(import.meta.env.VITE_API_URL+'api/Profile/GetUserProfile', {
+          const user_response = await fetch(import.meta.env.VITE_API_URL+'api/User/IsLoggedIn', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
+
+          if(!user_response.ok){
+             set({
+              loading: false,
+              IsLoggedIn: false
+            });
+            return;
+          }
+
+          const data: any = await user_response.json();
+          set({
+            loading: false,
+            IsLoggedIn: data.isLoggedIn
+          });
+
+          await get().getProfile();
+        } catch (error) {
+          set({
+            loading: false,
+            IsLoggedIn: false,
+            profile: undefined
+          });
+        }
+      },
+      logout: async() => {
+        set({ loading: true, error: undefined });
+        try {
+          const user_response = await fetch(import.meta.env.VITE_API_URL+'api/User/Logout', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
+          
+          if(!user_response.ok){
+            console.error('response was not okay')
+            return;
+          }
+
+          set({
+            profile: undefined,
+            loading: false,
+            IsLoggedIn: false
+          });
+        } catch (error) {
+          set({
+            loading: false,
+            IsLoggedIn:false,
+          });
+        }
+      },
+      getProfile: async () => {
+        if(get().IsLoggedIn !== true) return;
+        set({ loading: true, error: undefined });
+        try {
+          const user_response = await fetch(import.meta.env.VITE_API_URL+'api/Profile/GetProfile', {
             method: 'POST',
             credentials: 'include',
             headers: {

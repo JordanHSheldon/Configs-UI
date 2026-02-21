@@ -4,6 +4,12 @@
   min-width: 100%;
 }
 
+.profile-header{
+  display:block;
+  justify-content: "center";
+  align-items:"center";
+}
+
 .edit-btn {
   text-decoration: none;
   color: #007bff;
